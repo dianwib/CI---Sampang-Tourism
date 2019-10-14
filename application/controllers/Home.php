@@ -13,7 +13,7 @@ class Home extends CI_Controller {
         $this->load->helper('url');
     }
 
-    // menampilkan data kontak
+    
     function produk_anggota(){
         $json = json_decode($this->curl->simple_get($this->API.'produk-anggota'));
         $data['dataproduk']=$json->data;

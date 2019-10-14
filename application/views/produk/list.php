@@ -112,9 +112,6 @@
 if (is_array($dataproduk) || is_object($dataproduk))
 {
     foreach ($dataproduk as $kontak) {
-      # code...
-      #echo $dataproduk;
-  
         echo "<tr>
               <td>$kontak->nama</td>
               <td>$kontak->harga</td>
