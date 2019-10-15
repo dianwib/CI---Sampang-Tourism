@@ -1,13 +1,13 @@
 <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                            <a href="<?php echo base_url().'home'?>" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                             
                         </li>
 
                         <li class="dropdown submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk</a>
                             <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="about.html">Produk Anggota</a></li>
+                                <li><a href="<?php echo base_url().'index.php/home/produk_anggota' ?>">Produk Anggota</a></li>
                             </ul>
                         </li>
                         <li class="dropdown submenu">

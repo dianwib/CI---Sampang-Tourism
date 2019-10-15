@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.html"><img src=<?php echo base_url().'assets/images/google_play.png'?>></a>
+                    <a class="navbar-brand"  href="<?php echo base_url().'home'?>"><img src="images/logo.png"></a>
                 </div>
             </div>
 
@@ -336,7 +336,7 @@
         <div class="container">
             <div class="footer_row row">
                 <div class="col-md-3 col-sm-6 footer_about">
-                    <img width="70%" height ="70%" src=<?php echo base_url().'assets/images/google_play.png'?>>
+                    <img width="20%" height ="20%" src="images/logo.png"?>>
                      <p>Tentang aplikasi ......</p>
 
 
@@ -351,7 +351,7 @@
                     <h2>Mobile App</h2>
                     <a href="#">
       
-                     <img width="70%" height ="70%" src=<?php echo base_url().'assets/images/google_play.png'?>></a>
+                     <img width="70%" height ="70%" src="images/google_play.png"></a>
          
                 </div>
                 <div class="col-md-3 col-sm-6 footer_about">
