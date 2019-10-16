@@ -75,15 +75,15 @@
 	<!-- End Header_Area -->
     <!-- Slider area -->
     <section class="slider_area row m0">
-        <div class="slider_inner">
+        <!-- <div class="slider_inner">
             <div data-thumb="images/slider-1.jpg" data-src="images/slider-1.jpg">
                 <div class="camera_caption">
                    <div class="container">
                    	<h5 class=" wow fadeInUp animated">01</h5>
-                      <!--   <h5 class=" wow fadeInUp animated">Welcome to our</h5>
+                         <h5 class=" wow fadeInUp animated">Welcome to our</h5>
                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
                         <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
+                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a>
                    </div>
                 </div>
             </div>
@@ -91,10 +91,10 @@
                  <div class="camera_caption">
                    <div class="container">
                    	<h5 class=" wow fadeInUp animated">02</h5>
-                        <!-- <h5 class=" wow fadeInUp animated">Welcome to our</h5>
+                        <h5 class=" wow fadeInUp animated">Welcome to our</h5>
                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
                         <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
+                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> 
                    </div>
                 </div>
             </div>
@@ -102,10 +102,10 @@
          <div class="camera_caption">
                    <div class="container">
                         <h5 class=" wow fadeInUp animated">03</h5>
-                        <!-- <h5 class=" wow fadeInUp animated">Welcome to our</h5>
+                         <h5 class=" wow fadeInUp animated">Welcome to our</h5>
                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
                         <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
+                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> 
                    </div>
                 </div>
             </div>
@@ -113,14 +113,49 @@
    <div class="camera_caption">
                    <div class="container">
                         <h5 class=" wow fadeInUp animated">04</h5>
-                        <!-- <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
+                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
                         <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
+                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a>
                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </div> -->
+ 
+<div class="slider">
+  <div class="slide active-slide" data-slide-no='0'>
+      <h1>First Slide</h1>
+      <img src = "images/slider-1.jpg">
+  </div>     
+            
+  <div class="slide" data-slide-no='1'>
+    <h1>Second Slide</h1>
+    <img src ="images/slider-2.jpg">
+  </div>
+
+  <div class="slide" data-slide-no='2'>
+    <h1>Third Slide</h1>
+    <img src = "images/slider-1.jpg">
+  </div>
+
+  <div class="slide" data-slide-no='3'>
+    <h1>Fourth Slide</h1>
+    <img src = "images/slider-2.jpg">
+  </div>
+  
+  
+    <a href="#" class="arrow-prev">&#10096;</a>
+  
+    <ul class="slider-dots">
+      <li class="dot active-dot" data-slide-control="0">&bull;</li>
+      <li class="dot" data-slide-control="1">&bull;</li>
+      <li class="dot" data-slide-control="2">&bull;</li>
+      <li class="dot" data-slide-control="3">&bull;</li>
+    </ul>
+
+    <a href="#" class="arrow-next">&#10095;</a>
+</div>
+
+</section>
     <!-- Our Latest Blog Area -->
     <section class="latest_blog_area">
         <div class="container">
@@ -168,8 +203,8 @@
                           
                           	<img src="images/gallery/sv-1.jpg" alt="">
                             <div class="gallery_hover">
-                               <h2>Wisata</h2>
-                                <h2> Religi</h2>
+                               <h4 style="font-size: 200%;">Wisata<br>
+                                Religi</h4>
                                  
                             </div>
                         </a>
@@ -181,8 +216,8 @@
                           
                           	<img src="images/gallery/sv-2.jpg" alt="">
                             <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2>Sejarah</h2>
+                               <h4 style="font-size: 200%;">Wisata<br>
+                               Sejarah</h4>
                                 
                             </div>
                         </a>
@@ -194,9 +229,9 @@
                           
                           	<img src="images/gallery/sv-3.jpg" alt="">
                             <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Budaya</h2>
-                                
+                                <h4 style="font-size: 200%;">Wisata<br>
+                               Budaya</h4>
+                               
                             </div>
                         </a>
                         </div>
@@ -207,9 +242,9 @@
                           
                           	<img src="images/gallery/sv-4.jpg" alt="">
                             <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Belanja</h2>
-                                
+                                <h4 style="font-size: 200%;">Wisata<br>
+                               Belanja</h4>
+                               
                             </div>
                         </a>
                         </div>
@@ -220,9 +255,9 @@
                           
                           	<img src="images/gallery/sv-5.jpg" alt="">
                             <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Budaya</h2>
-                                
+                                <h4 style="font-size: 200%;">Wisata<br>
+                               Edukasi</h4>
+                               
                             </div>
                         </a>
                         </div>
@@ -232,9 +267,9 @@
                           	<a href="#"> 
                           	<img src="images/gallery/sv-6.jpg" alt="">
                             <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2>Buatan</h2>
-                                
+                                <h4 style="font-size: 200%;">Wisata<br>
+                               Buatan</h4>
+                               
                             </div>
                         </a>
                         </div>

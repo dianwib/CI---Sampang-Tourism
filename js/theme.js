@@ -200,3 +200,84 @@
     preloader ();
     
 })(jQuery);
+function t(){
+    var currentSlide = $('.active-slide');
+    var nextSlide = currentSlide.next();
+
+    var currentDot = $('.active-dot');
+    var nextDot = currentDot.next();
+    //console.log(nextSlide.length);
+    console.log(nextSlide.hasClass('slide'));
+    if(nextSlide.length === 0 || nextSlide.hasClass('slide') === false) {
+      nextSlide = $('.slide').first();
+      nextDot = $('.dot').first();
+    }
+    
+    currentSlide.fadeOut(600).removeClass('active-slide');
+    nextSlide.fadeIn(600).addClass('active-slide');
+
+    currentDot.removeClass('active-dot');
+    nextDot.addClass('active-dot');
+}
+
+var main = function() {
+    setInterval(function() {
+            t();
+        },3000);
+    
+
+  $('.dot').click(function(){
+    var newSlideNo = $(this).data('slide-control');
+    var currentSlideNo = $('.active-dot').data('slide-control');
+
+//console.log(newSlideNo,currentSlideNo);
+    
+$('.slide[data-slide-no="'+ currentSlideNo +'"]').fadeOut(600).removeClass('active-slide');
+    
+$('.slide[data-slide-no="'+ newSlideNo +'"]').fadeIn(600).addClass('active-slide');
+    $('.active-dot').removeClass('active-dot');
+    $(this).addClass('active-dot');
+    
+  });
+};
+
+$('.arrow-next').click(function() {
+    var currentSlide = $('.active-slide');
+    var nextSlide = currentSlide.next();
+
+    var currentDot = $('.active-dot');
+    var nextDot = currentDot.next();
+    //console.log(nextSlide.length);
+    console.log(nextSlide.hasClass('slide'));
+    if(nextSlide.length === 0 || nextSlide.hasClass('slide') === false) {
+      nextSlide = $('.slide').first();
+      nextDot = $('.dot').first();
+    }
+    
+    currentSlide.fadeOut(600).removeClass('active-slide');
+    nextSlide.fadeIn(600).addClass('active-slide');
+
+    currentDot.removeClass('active-dot');
+    nextDot.addClass('active-dot');
+  });
+
+
+  $('.arrow-prev').click(function() {
+    var currentSlide = $('.active-slide');
+    var prevSlide = currentSlide.prev();
+
+    var currentDot = $('.active-dot');
+    var prevDot = currentDot.prev();
+
+    if(prevSlide.length === 0) {
+      prevSlide = $('.slide').last();
+      prevDot = $('.dot').last();
+    }
+    
+    currentSlide.fadeOut(600).removeClass('active-slide');
+    prevSlide.fadeIn(600).addClass('active-slide');
+
+    currentDot.removeClass('active-dot');
+    prevDot.addClass('active-dot');
+  });
+$(document).ready(main);
