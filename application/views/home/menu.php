@@ -1,17 +1,17 @@
 <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown submenu">
-                            <a href="<?php echo base_url().'home'?>" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                            <a href="<?php echo base_url().'home'?>">Home</a>
                             
                         </li>
 
                         <li class="dropdown submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk</a>
                             <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="<?php echo base_url().'index.php/home/produk_anggota' ?>">Produk Anggota</a></li>
+                                <li><a href="<?php echo base_url().'index.php/produk' ?>">Produk Anggota</a></li>
                             </ul>
                         </li>
                         <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Berita</a>
+                            <a href="<?php echo base_url().'index.php/berita' ?>">Berita</a>
                         </li>
                         <li class="dropdown submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Destinasi</a>
@@ -24,6 +24,6 @@
                                 <li><a href="#">Wisata Buatan</a></li>  
                             </ul>
                         </li>
-                        <li><a href="contact.html">Tentang Kami</a></li>
+                        <li><a href="<?php echo base_url().'index.php/event' ?>">Event</a></li>
                       
                     </ul>

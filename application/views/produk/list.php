@@ -73,253 +73,69 @@
     </nav>
   <!-- End Header_Area -->
     <!-- Slider area -->
-    <section class="slider_area row m0">
-        <div class="slider_inner">
-            <div data-thumb="<?php echo base_url().'images/slider-1.jpg'?>" data-src="<?php echo base_url().'images/slider-1.jpg'?>">
-                <div class="camera_caption">
-                   <div class="container">
-                    <h5 class=" wow fadeInUp animated">01</h5>
-                      <!--   <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
-                   </div>
-                </div>
-            </div>
-            <div data-thumb="<?php echo base_url().'images/slider-2.jpg'?>" data-src="<?php echo base_url().'images/slider-2.jpg'?>">
-                 <div class="camera_caption">
-                   <div class="container">
-                    <h5 class=" wow fadeInUp animated">02</h5>
-                        <!-- <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
-                   </div>
-                </div>
-            </div>
-        <div data-thumb="<?php echo base_url().'images/slider-1.jpg'?>" data-src="<?php echo base_url().'images/slider-1.jpg'?>">
-         <div class="camera_caption">
-                   <div class="container">
-                        <h5 class=" wow fadeInUp animated">03</h5>
-                        <!-- <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
-                   </div>
-                </div>
-            </div>
-            <div data-thumb="<?php echo base_url().'images/slider-2.jpg'?>" data-src="<?php echo base_url().'images/slider-2.jpg'?>">
-   <div class="camera_caption">
-                   <div class="container">
-                        <h5 class=" wow fadeInUp animated">04</h5>
-                        <!-- <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> -->
-                   </div>
-                </div>
-            </div>
+       <section class="slider_area row m0">
+       
+<div class="slideshowContainer">
+  
+<!-- Replace the image 'src' with the images in your project.
+Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
+ 
+  
+<!-- I would recommend to replace these 'span' elements with 'img' files
+for each the left and right arrow that fits your project, and size accordingly.
+I've shown 'span' elements because I didn't want to upload files. -->
+  <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
+  <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
+  
+  <div class="slideshowCircles">
+<!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
+Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
+    <span class="circle dot"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+ 
+    <span class="circle"></span>
+  </div>
+  
+</div>
+
+</section>
+ <!-- Our Latest Blog Area -->
+    
+    
+ <section class="featured_works row" data-stellar-background-ratio="0.3">
+        <div class="tittle wow fadeInUp">
+            <h2>Produk Anggota</h2>
+            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
-    </section>
-    <!-- Our Latest Blog Area -->
-    <section class="latest_blog_area">
-        <div class="container">
-            <div class="tittle wow fadeInUp">
-                <h2>Berita Terbaru</h2>
-                <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-            </div>
-            <div class="row latest_blog">
-                 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th class="th-sm">Nama Toko
 
-      </th>
-      <th class="th-sm">Harga
+<div class="featured_gallery">
+            
+        <?php
 
-      </th>
-      <th class="th-sm">Outlet
-
-
-      </th>
-    </tr>
-  </thead>
-<?php
 
 if (is_array($dataproduk) || is_object($dataproduk))
 {
-    foreach ($dataproduk as $kontak) {
-        echo "<tr>
-              <td>$kontak->nama</td>
-              <td>$kontak->harga</td>
-              <td>$kontak->outlet</td>
-              </tr>";
-    }
-  }
-    ?>
-</table>
-
-            </div>
-        </div>
-    </section>
+    foreach ($dataproduk as $kontak) {?>
+<div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
+        
+                <img src="../../images/gallery/gl-1.jpg" alt="">
+                <div class="gallery_hover">
+                    <h4><?php echo $kontak->nama?></h4>
+                    <a href="#">Lihat Produk</a>
+                </div>
    
-    
-    <!-- Our Services Area -->
-    <section class="our_services_area">
-        <div class="container">
-            <div class="tittle wow fadeInUp">
-                <h2>Destinasi Wisata</h2>
-               <!--  <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-            </div>
-            <div class="portfolio_inner_area">
-                <div class="portfolio_item">
-                   <div class="grid-sizer"></div>
-                    <div class="single_facilities col-xs-4 p0 painting photography adversting">
-                       <div class="single_facilities_inner">
-                              <a href="#"> 
-                          
-                            <img src="<?php echo base_url().'images/gallery/sv-1.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                               <h2>Wisata</h2>
-                                <h2> Religi</h2>
-                                 
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="single_facilities col-xs-4 p0 webdesign">
-                       <div class="single_facilities_inner">
-                              <a href="#"> 
-                          
-                            <img src="<?php echo base_url().'images/gallery/sv-2.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2>Sejarah</h2>
-                                
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="single_facilities col-xs-4 painting p0 photography branding">
-                       <div class="single_facilities_inner">
-                              <a href="#"> 
-                          
-                            <img src="<?php echo base_url().'images/gallery/sv-3.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Budaya</h2>
-                                
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="single_facilities col-xs-4 p0 adversting webdesign adversting">
-                       <div class="single_facilities_inner">
-                              <a href="#"> 
-                          
-                            <img src="<?php echo base_url().'images/gallery/sv-4.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Belanja</h2>
-                                
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="single_facilities col-xs-4 p0 painting adversting branding">
-                       <div class="single_facilities_inner">
-                            <a href="#"> 
-                          
-                            <img src="<?php echo base_url().'images/gallery/sv-5.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2> Budaya</h2>
-                                
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="single_facilities col-xs-4 p0 webdesign photography magazine adversting">
-                       <div class="single_facilities_inner">
-                            <a href="#"> 
-                            <img src="<?php echo base_url().'images/gallery/sv-6.jpg'?>" alt="">
-                            <div class="gallery_hover">
-                                <h2>Wisata</h2>
-                                <h2>Buatan</h2>
-                                
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>  
+<?} }
+    ?>
+           
         </div>
     </section>
-    <!-- Our Featured Works Area -->
-    <section class="featured_works row" data-stellar-background-ratio="0.3">
-        <div class="tittle wow fadeInUp">
-            <h2>Event</h2>
-            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-        </div>
-        <div class="featured_gallery">
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-1.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 1</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-2.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 2</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-3.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 3</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-4.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 4</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-5.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 5</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-6.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 6</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-7.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 7</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="<?php echo base_url().'images/gallery/gl-8.jpg'?>" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 8</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Our Featured Works Area -->
+       <!-- End Our Featured Works Area -->
 
     
     <!-- End Our Latest Blog Area -->
@@ -347,7 +163,7 @@ if (is_array($dataproduk) || is_object($dataproduk))
         <div class="container">
             <div class="footer_row row">
                 <div class="col-md-3 col-sm-6 footer_about">
-                    <img width="20%" height ="20%" src="<?php echo base_url().'images/logo.png'?>"?>>
+                    <img  src="<?php echo base_url().'images/logo.png'?>"?>>
                      <p>Tentang aplikasi ......</p>
 
 

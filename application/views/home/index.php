@@ -75,119 +75,82 @@
 	<!-- End Header_Area -->
     <!-- Slider area -->
     <section class="slider_area row m0">
-        <!-- <div class="slider_inner">
-            <div data-thumb="images/slider-1.jpg" data-src="images/slider-1.jpg">
-                <div class="camera_caption">
-                   <div class="container">
-                   	<h5 class=" wow fadeInUp animated">01</h5>
-                         <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a>
-                   </div>
-                </div>
-            </div>
-            <div data-thumb="images/slider-2.jpg" data-src="images/slider-2.jpg">
-                 <div class="camera_caption">
-                   <div class="container">
-                   	<h5 class=" wow fadeInUp animated">02</h5>
-                        <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> 
-                   </div>
-                </div>
-            </div>
-        <div data-thumb="images/slider-1.jpg" data-src="images/slider-1.jpg">
-         <div class="camera_caption">
-                   <div class="container">
-                        <h5 class=" wow fadeInUp animated">03</h5>
-                         <h5 class=" wow fadeInUp animated">Welcome to our</h5>
-                        <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN, MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a> 
-                   </div>
-                </div>
-            </div>
-            <div data-thumb="images/slider-2.jpg" data-src="images/slider-2.jpg">
-   <div class="camera_caption">
-                   <div class="container">
-                        <h5 class=" wow fadeInUp animated">04</h5>
-                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">CLEAN ,MODERN, MULTIPURPOSE THEME</h3>
-                        <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our team of professionals will help you turn your dream home or flat into a reality fast. The Love Boat promises something for everyone. Now the world don't move to the beat of just one</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#">Read More</a>
-                   </div>
-                </div>
-            </div>
-        </div> -->
+       
+<div class="slideshowContainer">
+  
+<!-- Replace the image 'src' with the images in your project.
+Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
+  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
  
-<div class="slider">
-  <div class="slide active-slide" data-slide-no='0'>
-      <h1>First Slide</h1>
-      <img src = "images/slider-1.jpg">
-  </div>     
-            
-  <div class="slide" data-slide-no='1'>
-    <h1>Second Slide</h1>
-    <img src ="images/slider-2.jpg">
-  </div>
-
-  <div class="slide" data-slide-no='2'>
-    <h1>Third Slide</h1>
-    <img src = "images/slider-1.jpg">
-  </div>
-
-  <div class="slide" data-slide-no='3'>
-    <h1>Fourth Slide</h1>
-    <img src = "images/slider-2.jpg">
+  
+<!-- I would recommend to replace these 'span' elements with 'img' files
+for each the left and right arrow that fits your project, and size accordingly.
+I've shown 'span' elements because I didn't want to upload files. -->
+  <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
+  <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
+  
+  <div class="slideshowCircles">
+<!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
+Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
+    <span class="circle dot"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+ 
+    <span class="circle"></span>
   </div>
   
-  
-    <a href="#" class="arrow-prev">&#10096;</a>
-  
-    <ul class="slider-dots">
-      <li class="dot active-dot" data-slide-control="0">&bull;</li>
-      <li class="dot" data-slide-control="1">&bull;</li>
-      <li class="dot" data-slide-control="2">&bull;</li>
-      <li class="dot" data-slide-control="3">&bull;</li>
-    </ul>
-
-    <a href="#" class="arrow-next">&#10095;</a>
 </div>
 
 </section>
-    <!-- Our Latest Blog Area -->
+    <!-- BERITA-->
     <section class="latest_blog_area">
-        <div class="container">
-            <div class="tittle wow fadeInUp">
+ <div class="tittle wow fadeInUp">
                 <h2>Berita Terbaru</h2>
-                <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-            </div>
+             <!--    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
+             --></div>
             <div class="row latest_blog">
-                <div class="col-md-4 col-sm-6 blog_content">
-                    <img src="images/blog/lb-1.jpg" alt="">
-                    <a href="#" class="blog_heading">Our Latest Project</a>
-                    <h4><small>by  </small><a href="#">Emran Khan</a><span>/</span><small>ON </small> October 15, 2016</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
+           <div class="container">
+        <div class="row" style="text-align: center;">
+            <div class="col-md-12">
+                <div class="news-slider11">
+     
+
+    <?php
+    for  ($i=0;$i<8;$i++) {?>
+			<div class="post-slide11">
+             <div class="post-img">
+             <span class="over-layer"></span>
+              <img src=<?php echo base_url().'/images/image_1.jpg'?>>
+              </div>
+              <h3 class="post-title">
+               <a href="#"><?php echo 'Berita '.$i;?></a>
+               </h3>
+                <span class="post-date"><i class="fa fa-calendar"></i> <?php echo '1'.$i.' Oktober 2019';?></span>
                 </div>
-                <div class="col-md-4 col-sm-6 blog_content">
-                    <img src="images/blog/lb-2.jpg" alt="">
-                    <a href="#" class="blog_heading">Our Latest Project</a>
-                    <h4><small>by  </small><a href="#">Prodip Ghosh</a><span>/</span><small>ON </small> October 15, 2016</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
-                </div>
-                <div class="col-md-4 col-sm-6 blog_content">
-                    <img src="images/blog/lb-3.jpg" alt="">
-                    <a href="#" class="blog_heading">Our Latest Project</a>
-                    <h4><small>by  </small><a href="#">Prodip Ghosh</a><span>/</span><small>ON </small> October 15, 2016</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
+       
+<?} 
+    ?>
                 </div>
             </div>
+
+<a href="<?php echo base_url().'index.php/berita' ?>">
+ <button style="margin-top:4 ; color: black;"  class="btn btn-primary">LIHAT SEMUA BERITA</button>
+</a>
         </div>
-    </section>
-   
+    </div>
+   </div> 
+        </section>
     
-    <!-- Our Services Area -->
+
+
+
+
+
+
+    <!-- WISATA -->
     <section class="our_services_area">
         <div class="container">
             <div class="tittle wow fadeInUp">
@@ -201,7 +164,7 @@
                        <div class="single_facilities_inner">
                           		<a href="#"> 
                           
-                          	<img src="images/gallery/sv-1.jpg" alt="">
+                          	<img src="images/gallery/WRELIGI.jpg" alt="">
                             <div class="gallery_hover">
                                <h4 style="font-size: 200%;">Wisata<br>
                                 Religi</h4>
@@ -214,7 +177,7 @@
                        <div class="single_facilities_inner">
                           		<a href="#"> 
                           
-                          	<img src="images/gallery/sv-2.jpg" alt="">
+                          	<img src="images/gallery/WSEJARAH.jpg" alt="">
                             <div class="gallery_hover">
                                <h4 style="font-size: 200%;">Wisata<br>
                                Sejarah</h4>
@@ -227,7 +190,7 @@
                        <div class="single_facilities_inner">
                           		<a href="#"> 
                           
-                          	<img src="images/gallery/sv-3.jpg" alt="">
+                          	<img src="images/gallery/wbudaya.jpg" alt="">
                             <div class="gallery_hover">
                                 <h4 style="font-size: 200%;">Wisata<br>
                                Budaya</h4>
@@ -240,7 +203,7 @@
                        <div class="single_facilities_inner">
                           		<a href="#"> 
                           
-                          	<img src="images/gallery/sv-4.jpg" alt="">
+                          	<img src="images/gallery/WBELANJA.jpg" alt="">
                             <div class="gallery_hover">
                                 <h4 style="font-size: 200%;">Wisata<br>
                                Belanja</h4>
@@ -253,10 +216,10 @@
                        <div class="single_facilities_inner">
                           	<a href="#"> 
                           
-                          	<img src="images/gallery/sv-5.jpg" alt="">
+                          	<img src="images/gallery/wKULINER.jpg" alt="">
                             <div class="gallery_hover">
                                 <h4 style="font-size: 200%;">Wisata<br>
-                               Edukasi</h4>
+                               Kuliner</h4>
                                
                             </div>
                         </a>
@@ -265,7 +228,7 @@
                     <div class="single_facilities col-xs-4 p0 webdesign photography magazine adversting">
                        <div class="single_facilities_inner">
                           	<a href="#"> 
-                          	<img src="images/gallery/sv-6.jpg" alt="">
+                          	<img src="images/gallery/wbuatan.jpg" alt="">
                             <div class="gallery_hover">
                                 <h4 style="font-size: 200%;">Wisata<br>
                                Buatan</h4>
@@ -278,7 +241,53 @@
             </div>
         </div>
     </section>
-    <!-- Our Featured Works Area -->
+
+
+<!-- PRODUK -->
+     <section class="latest_blog_area">
+         <div class="tittle wow fadeInUp">
+            <h2>Produk Anggota </h2>
+            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
+        </div>
+    
+            <div class="row latest_blog">
+           <div class="container">
+        <div class="row" style="text-align: center;">
+            
+    	<div class="news-slider11">
+<?php
+if (is_array($dataproduk) || is_object($dataproduk))
+{
+    foreach ($dataproduk as $kontak) {?>
+<div class="thumbnail" >
+					<img src="<?php echo base_url().'images/gallery/gl-1.jpg'?>" class="img-responsive">
+					<div class="caption">
+						<div class="row">
+								<h4 style="padding: 2%"><?php echo $kontak->nama?></h4>	<hr>
+						<h4 class="text-center"><span class="label label-info"><?php echo 'Rp : '. $kontak->harga?></span></h4>						
+						</div>
+						<p><i><?php echo 'Outlet : '. $kontak->outlet?></i></p>
+					
+						<p> </p>
+					</div>
+				</div>  
+<?} }
+    ?>
+
+        </div> 
+<a href="<?php echo base_url().'index.php/produk'?>">
+ <button style="margin-top:2%; color: black "  class="btn btn-primary">LIHAT SEMUA PRODUK</button>
+</a>
+
+	</div>
+</div>
+        </div>
+
+    </section>
+
+    <!-- End Our Featured Works Area -->
+
+    <!-- EVENT -->
     <section class="featured_works row" data-stellar-background-ratio="0.3">
         <div class="tittle wow fadeInUp">
             <h2>Event</h2>
@@ -288,65 +297,43 @@
             <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
                 <img src="images/gallery/gl-1.jpg" alt="">
                 <div class="gallery_hover">
-                    <h4>Event 1</h4>
+                    <h4>Nama Event 1</h4>
                     <a href="#">Lihat Event</a>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
                 <img src="images/gallery/gl-2.jpg" alt="">
                 <div class="gallery_hover">
-                    <h4>Event 2</h4>
+                    <h4>Nama Event 2</h4>
                     <a href="#">Lihat Event</a>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
                 <img src="images/gallery/gl-3.jpg" alt="">
                 <div class="gallery_hover">
-                    <h4>Event 3</h4>
+                    <h4>Nama Event 3</h4>
                     <a href="#">Lihat Event</a>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
                 <img src="images/gallery/gl-4.jpg" alt="">
                 <div class="gallery_hover">
-                    <h4>Event 4</h4>
+                    <h4>Nama Event 4</h4>
                     <a href="#">Lihat Event</a>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="images/gallery/gl-5.jpg" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 5</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="images/gallery/gl-6.jpg" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 6</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="images/gallery/gl-7.jpg" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 7</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src="images/gallery/gl-8.jpg" alt="">
-                <div class="gallery_hover">
-                    <h4>Event 8</h4>
-                    <a href="#">Lihat Event</a>
-                </div>
-            </div>
+
+
         </div>
+
+<a href="<?php echo base_url().'index.php/Event'?>">
+ <button style="margin-top:2%; "  class="btn btn-primary">LIHAT SEMUA EVENT</button>
+</a>
     </section>
+
     <!-- End Our Featured Works Area -->
 
-    
-    <!-- End Our Latest Blog Area -->
+   
 
     <!-- Our Partners Area -->
     <section class="our_partners_area">
@@ -371,7 +358,7 @@
         <div class="container">
             <div class="footer_row row">
                 <div class="col-md-3 col-sm-6 footer_about">
-                    <img width="20%" height ="20%" src="images/logo.png"?>>
+                    <img src="images/logo.png"?>>
                      <p>Tentang aplikasi ......</p>
 
 

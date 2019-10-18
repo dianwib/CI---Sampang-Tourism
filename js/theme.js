@@ -1,6 +1,37 @@
 ;(function($) {
     "use strict";
-	
+
+function berita(){
+ 
+       if ( $('.news-slider11').length ){
+            $('.news-slider11').owlCarousel({
+                loop:true,
+                items:4,
+                margin:110,
+                autoplay:true,
+                response:true,
+                responsive:{
+                    300:{
+                        items:1, 
+                        margin:0,
+                    },
+                    500:{
+                        items:2, 
+                    },
+                    700:{
+                        items:3, 
+                    },
+                    800:{
+                        items:4,
+                        margin:40,
+                    },
+                     
+                }
+            });
+        };
+    };
+
+
     //* mainNavbar
     function mainNavbar(){
         if ( $('#main_navbar').length ){ 
@@ -197,33 +228,13 @@
     ourSkrill ();
     counterUp2 ();
     mainNavbar ();
+    berita();
     preloader ();
     
 })(jQuery);
-function t(){
-    var currentSlide = $('.active-slide');
-    var nextSlide = currentSlide.next();
-
-    var currentDot = $('.active-dot');
-    var nextDot = currentDot.next();
-    //console.log(nextSlide.length);
-    console.log(nextSlide.hasClass('slide'));
-    if(nextSlide.length === 0 || nextSlide.hasClass('slide') === false) {
-      nextSlide = $('.slide').first();
-      nextDot = $('.dot').first();
-    }
-    
-    currentSlide.fadeOut(600).removeClass('active-slide');
-    nextSlide.fadeIn(600).addClass('active-slide');
-
-    currentDot.removeClass('active-dot');
-    nextDot.addClass('active-dot');
-}
 
 var main = function() {
-    setInterval(function() {
-            t();
-        },3000);
+    
     
 
   $('.dot').click(function(){
@@ -281,3 +292,106 @@ $('.arrow-next').click(function() {
     prevDot.addClass('active-dot');
   });
 $(document).ready(main);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// IMAGE SLIDES & CIRCLES ARRAYS, & COUNTER
+var imageSlides = document.getElementsByClassName('imageSlides');
+var circles = document.getElementsByClassName('circle');
+var leftArrow = document.getElementById('leftArrow');
+var rightArrow = document.getElementById('rightArrow');
+var counter = 0;
+
+// HIDE ALL IMAGES FUNCTION
+function hideImages() {
+  for (var i = 0; i < imageSlides.length; i++) {
+    imageSlides[i].classList.remove('visible');
+  }
+}
+
+// REMOVE ALL DOTS FUNCTION
+function removeDots() {
+  for (var i = 0; i < imageSlides.length; i++) {
+    circles[i].classList.remove('dot');
+  }
+}
+
+// SINGLE IMAGE LOOP/CIRCLES FUNCTION
+function imageLoop() {
+  var currentImage = imageSlides[counter];
+  var currentDot = circles[counter];
+  currentImage.classList.add('visible');
+  removeDots();
+  currentDot.classList.add('dot');
+  counter++;
+}
+
+// LEFT & RIGHT ARROW FUNCTION & CLICK EVENT LISTENERS
+function arrowClick(e) {
+  var target = e.target;
+  if (target == leftArrow) {
+    clearInterval(imageSlideshowInterval);
+    hideImages();
+    removeDots();
+    if (counter == 1) {
+      counter = (imageSlides.length - 1);
+      imageLoop();
+      imageSlideshowInterval = setInterval(slideshow, 10000);
+    } else {
+      counter--;
+      counter--;
+      imageLoop();
+      imageSlideshowInterval = setInterval(slideshow, 10000);
+    }
+  } 
+  else if (target == rightArrow) {
+    clearInterval(imageSlideshowInterval);
+    hideImages();
+    removeDots();
+    if (counter == imageSlides.length) {
+      counter = 0;
+      imageLoop();
+      imageSlideshowInterval = setInterval(slideshow, 10000);
+    } else {
+      imageLoop();
+      imageSlideshowInterval = setInterval(slideshow, 10000);
+    }
+  }
+}
+
+leftArrow.addEventListener('click', arrowClick);
+rightArrow.addEventListener('click', arrowClick);
+
+
+// IMAGE SLIDE FUNCTION
+function slideshow() {
+  if (counter < imageSlides.length) {
+    imageLoop();
+  } else {
+    counter = 0;
+    hideImages();
+    imageLoop();
+  }
+}
+
+// SHOW FIRST IMAGE, & THEN SET & CALL SLIDE INTERVAL
+setTimeout(slideshow, 1000);
+var imageSlideshowInterval = setInterval(slideshow, 10000);
+
+
+
+    
