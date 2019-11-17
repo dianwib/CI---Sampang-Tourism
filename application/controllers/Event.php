@@ -26,4 +26,5 @@ class Event extends CI_Controller {
         $data['dataproduk']=$json->data;
         $this->load->view('event/event_detil',$data);
     }
+    
 }

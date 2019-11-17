@@ -25,5 +25,6 @@
                             </ul>
                         </li>
                         <li><a href="<?php echo base_url().'index.php/event' ?>">Event</a></li>
+                        <li><a href="<?php echo base_url().'index.php/film' ?>">Film</a></li>
                       
                     </ul>

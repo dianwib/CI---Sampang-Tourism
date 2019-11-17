@@ -1,6 +1,18 @@
 ;(function($) {
     "use strict";
 
+
+function ganti_warna_header(){
+    $(window).on("scroll", function() {
+        if($(window).scrollTop() > 50) {
+            $(".header_aera").addClass("active_scroll_header");
+        } else {
+            //remove the background property so it comes transparent again (defined in your css)
+           $(".header_aera").removeClass("active_scroll_header");
+        }
+    });
+}
+
 function berita(){
  
        if ( $('.news-slider11').length ){
@@ -226,6 +238,8 @@ function berita(){
     counterUp ();  
     partnersCarosel ();
     ourSkrill ();
+
+    ganti_warna_header();
     counterUp2 ();
     mainNavbar ();
     berita();
@@ -234,7 +248,6 @@ function berita(){
 })(jQuery);
 
 var main = function() {
-    
     
 
   $('.dot').click(function(){

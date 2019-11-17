@@ -16,9 +16,10 @@ class Home extends CI_Controller {
     
 	public function index()
 	{
-		$json = json_decode($this->curl->simple_get($this->API.'produk-anggota'));
-        $data['dataproduk']=$json->data;
+/*		$json = json_decode($this->curl->simple_get($this->API.'produk-anggota'));
+         $data['dataproduk']=$json->data;
 
-		$this->load->view('home/index',$data);
+		$this->load->view('home/index',$data);*/
+		$this->load->view('home/index');
 	}
 }
