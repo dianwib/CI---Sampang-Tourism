@@ -11,7 +11,7 @@
       <li><a href="<?php echo base_url().'admin/events'?>" class="active">Events</a></li>
       <li><a href="<?php echo base_url().'admin/slides'?>" >Slides</a></li>
       <li><a href="<?php echo base_url().'admin/news'?>">News</a></li>
-      <li><a href="<?php echo base_url().'admin/parners'?>">Partners</a></li>
+      <li><a href="<?php echo base_url().'admin/partners'?>">Partners</a></li>
       <li><a href="<?php echo base_url().'admin/galleries'?>">Galleries</a></li>
       <li><a href="<?php echo base_url().'admin/photos-gallery'?>">Photos-gallery</a></li>
       <li><a href="<?php echo base_url().'admin/estination-categories'?>">Destination-categories</a></li>
@@ -56,7 +56,7 @@
 
     <div id="view" style="margin: 10px 20px;">
     <div class="table-responsive">
-      <form class="form-signin" action="<?php echo base_url().'Admin/put_events/'.$data->id ?>" method="post">
+      <form class="form-signin" action="<?php echo base_url().'Admin/put_events/'.$data->id ?>" method="post"  enctype="multipart/form-data">
             <table>
 
   <table class="table table-bordered">
@@ -64,19 +64,19 @@
       <th>TITLE</th>
       <th>CONTENT</th>
       <th>PICTURE</th>
-      <th>CREATE AT</th>
-      <th>UPDATE AT</th>
-    
     </tr>
 
       <tr>
         
                     <!-- Membuat sebuah textbox text yang akan digunakan untuk form ubah -->
-              <td><input type="text" class="title-value" value="<?php echo $data->title; ?>">
-              </td><td><input type="text" class="content-value" value="<?php echo $data->content; ?>">
-              </td><td><input type="text" class="picture-value" value="<?php echo $data->picture; ?>">
-              </td><td><input type="text" class="created_at-value" value="<?php echo $data->created_at; ?>">
-              </td><td><input type="text" class="updated_at-value" value="<?php echo $data->updated_at; ?>">
+              <td><input type="text" name="title" required class="title-value" value="<?php echo $data->title; ?>">
+              </td><td><textarea name="content" required rows="15" cols="75" class="content-value" ><?php echo $data->content; ?></textarea>
+              </td><td><img src="<?=base_url().'images/events/'.$data->picture; ?>" height="200">
+              <input class="picture-value" type="file" id="picture" name="picture"  accept="image/*">
+                <input type="hidden" name="temp_picture" value="<?php echo $data->picture ?>">
+                <td><input type="hidden" name="updated_at" required class="title-value" value="<?php echo $data->updated_at; ?>">
+              <td><input type="hidden" name="created_at" required class="title-value" value="<?php echo $data->created_at; ?>">
+              
         </td>
       </tr>
 

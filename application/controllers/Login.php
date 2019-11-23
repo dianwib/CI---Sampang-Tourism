@@ -8,7 +8,7 @@ class Login extends CI_Controller{
 	function index(){
 	    if(!empty($this->session->userdata('token')))
 	    {
-	 	redirect('/admin/get_events');		
+	 	redirect('/admin/events');		
 	 }
     else{
 	   $this->load->view('admin/admin_login');
@@ -53,7 +53,7 @@ curl_close($ch);
 $json = json_decode($result);
 if ($json->accessToken != "") {
 	$this->session->set_userdata('token',$json->accessToken);
-	echo '<script language="javascript">alert("Login berhasil"); document.location="../Admin/get_events";</script>';	
+	echo '<script language="javascript">alert("Login berhasil"); document.location="../Admin/events";</script>';	
 
 			}	
 else{

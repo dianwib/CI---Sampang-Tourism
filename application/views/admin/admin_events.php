@@ -11,7 +11,7 @@
       <li><a href="<?php echo base_url().'admin/events'?>" class="active">Events</a></li>
       <li><a href="<?php echo base_url().'admin/slides'?>" >Slides</a></li>
       <li><a href="<?php echo base_url().'admin/news'?>">News</a></li>
-      <li><a href="<?php echo base_url().'admin/parners'?>">Partners</a></li>
+      <li><a href="<?php echo base_url().'admin/partners'?>">Partners</a></li>
       <li><a href="<?php echo base_url().'admin/galleries'?>">Galleries</a></li>
       <li><a href="<?php echo base_url().'admin/photos-gallery'?>">Photos-gallery</a></li>
       <li><a href="<?php echo base_url().'admin/estination-categories'?>">Destination-categories</a></li>
@@ -50,9 +50,9 @@
 </head>
 <body>
     <div class="well">
-        <button type="button" id="btn-tambah" data-toggle="modal" data-target="#form-modal" class="btn btn-success pull-right">
-            <span class="glyphicon glyphicon-plus"></span>  Tambah Data
-        </button>
+        <a href="<?php echo base_url().'admin/tambah_events'?>"> <button type="button" id="btn-tambah" class="btn btn-success pull-right">
+            <span class="glyphicon glyphicon-plus"></span>  Tambah Data</button></a>
+        
         <h2 style="margin-top: 0;">Data Event</h2>
     </div>
 
@@ -66,8 +66,8 @@
       <th>CONTENT</th>
       <th>PICTURE</th>
       <th>CREATE AT</th>
-      <th>UPDATE AT</th>
-      <th colspan="2" class="text-center"><span class="glyphicon glyphicon-cog"></span></th>
+      <!-- <th>UPDATE AT</th>
+       --><th colspan="2" class="text-center"><span class="glyphicon glyphicon-cog"></span></th>
     </tr>
     <?php
         $no = 1;
@@ -75,17 +75,17 @@
     ?>
       <tr>
         <td class="align-middle text-center"><?php echo $no; ?></td>
-        <td class="align-middle"><?php echo $data->title; ?></td>
-        <td class="align-middle"><?php echo $data->content; ?></td>
-        <td class="align-middle"><?php echo $data->picture; ?></td>
-        <td class="align-middle"><?php echo $data->created_at; ?></td>
-        <td class="align-middle"><?php echo $data->updated_at; ?></td>
-        <td class="align-middle text-center">
-          <a href="<?php echo base_url().'admin/edit_events/'.$data->id?>" data-id="<?php echo $data->id; ?>"  class="btn btn-default btn-form-ubah"><span class="glyphicon glyphicon-pencil"></span>ubah</a>
+        <td class="align-middle"><?php echo $data['title']; ?></td>
+        <td class="align-middle"><textarea readonly="" rows="15" cols="75"><?php echo $data['content']; ?></textarea></td>
+        <td class="align-middle"><img src="<?=base_url().'images/events/'.$data['picture']; ?>" height="200"></td>
+        <td class="align-middle"><?php echo $data['created_at']; ?></td>
+        <!-- <td class="align-middle"><?php echo $data->updated_at; ?></td>
+         --><td class="align-middle text-center">
+          <a href="<?php echo base_url().'admin/edit_events/'.$data['id']?>" data-id="<?php echo $data['id']; ?>"  class="btn btn-default btn-form-ubah"><span class="glyphicon glyphicon-pencil"></span>ubah</a>
 
         </td>
         <td class="align-middle text-center">
-          <a href="<?php echo base_url().'admin/delete_events/'.$data->id?>" onclick="return confirm('Are you sure delete?')" class="btn btn-danger btn-alert-hapus"><span class="glyphicon glyphicon-erase"></span>hapus</a>
+          <a href="<?php echo base_url().'admin/delete_events/'.$data['id']?>" onclick="return confirm('Are you sure delete?')" class="btn btn-danger btn-alert-hapus"><span class="glyphicon glyphicon-erase"></span>hapus</a>
         </td>
       </tr>
     <?php
