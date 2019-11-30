@@ -6,11 +6,11 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->API="http://sip6ikmsampang.info/";
+		$this->API="https://sampang-tourism.herokuapp.com/";
         $this->load->library('session');
         $this->load->library('curl');
-        $this->load->helper('form');
-        $this->load->helper('url');
+
+        $this->load->helper(array('form', 'url'));
     }
 
     
@@ -20,6 +20,70 @@ class Home extends CI_Controller {
          $data['dataproduk']=$json->data;
 
 		$this->load->view('home/index',$data);*/
-		$this->load->view('home/index');
+
+		$url = $this->API.'slides';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_slides']=$response['data'];
+
+    	#######NEWS
+    	$url = $this->API.'news';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_news']=$response['data'];
+
+    	#######ECONOMIES
+    	$url = $this->API.'creative-economies';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_creative_economies']=$response['data'];
+
+    	#######EVENTS
+    	$url = $this->API.'events';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_events']=$response['data'];
+
+    	#######DESTINATION-CATEGORIES
+    	$url = $this->API.'destination-categories';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_destination_categories']=$response['data'];
+
+
+#######PARTNERS
+    	$url = $this->API.'partners';
+        $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($response_json, true);
+    	$data['data_partners']=$response['data'];
+
+
+    	
+		$this->load->view('home/index',$data);
+		
 	}
 }

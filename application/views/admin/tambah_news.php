@@ -13,11 +13,11 @@
       <li><a href="<?php echo base_url().'admin/news'?>"  class="active">News</a></li>
       <li><a href="<?php echo base_url().'admin/partners'?>">Partners</a></li>
       <li><a href="<?php echo base_url().'admin/galleries'?>">Galleries</a></li>
-      <li><a href="<?php echo base_url().'admin/photos-gallery'?>">Photos-gallery</a></li>
-      <li><a href="<?php echo base_url().'admin/estination-categories'?>">Destination-categories</a></li>
+      <li><a href="<?php echo base_url().'admin/photos_gallery'?>">Photos-gallery</a></li>
+      <li><a href="<?php echo base_url().'admin/destination_categories'?>">Destination-categories</a></li>
       <li><a href="<?php echo base_url().'admin/destinations'?>">Destinations</a></li>
-      <li><a href="<?php echo base_url().'admin/creative-economies'?>">Creative-economies</a></li>
-      <li><a href="<?php echo base_url().'admin/creative-economies-categories'?>">Creative-economies-categories</a></li>
+      <li><a href="<?php echo base_url().'admin/creative_economies'?>">Creative-economies</a></li>
+      <li><a href="<?php echo base_url().'admin/creative_economies_categories'?>">Creative-economies-categories</a></li>
       <li><a href="<?php echo base_url().'login/logout'?>">Logout</a></li>
     </ul>
 
