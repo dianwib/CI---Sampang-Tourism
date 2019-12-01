@@ -14,14 +14,14 @@
     <!-- Animate CSS -->
     <link href="vendors/animate/animate.css" rel="stylesheet">
     <!-- Icon CSS-->
-	<link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
     <!-- Camera Slider -->
     <link rel="stylesheet" href="vendors/camera-slider/camera.css">
     <!-- Owlcarousel CSS-->
-	<link rel="stylesheet" type="text/css" href="vendors/owl_carousel/owl.carousel.css" media="all">
+    <link rel="stylesheet" type="text/css" href="vendors/owl_carousel/owl.carousel.css" media="all">
 
     <!--Theme Styles CSS-->
-	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,10 +33,10 @@
     <!-- Preloader -->
     <div class="preloader"></div>
 
-	<!-- Top Header_Area -->
-	<!-- End Top Header_Area -->
+    <!-- Top Header_Area -->
+    <!-- End Top Header_Area -->
 
-	<!-- Header_Area -->
+    <!-- Header_Area -->
     <nav class="navbar navbar-default header_aera" id="main_navbar">
         <div class="container">
             <!-- searchForm -->
@@ -67,12 +67,12 @@
             <div class="col-md-10 p0">
                 <div class="collapse navbar-collapse" id="min_navbar">
                          <?php $this->load->view('home/menu');?>
-	  
+      
                 </div><!-- /.navbar-collapse -->
             </div>
         </div><!-- /.container -->
     </nav>
-	<!-- End Header_Area -->
+    <!-- End Header_Area -->
     <!-- Slider area -->
     <section class="slider_area row m0">
        
@@ -122,8 +122,8 @@ Make sure you match the number of these 'circle' span elements to the number of 
             <div class="row latest_blog">
            <div class="container">
         <div class="row" style="text-align: center;">
-            <div class="col-md-12">
-                <div class="news-slider11">
+            <div class="col-md-12 row-centered">
+                <div class="news-slider11 row-centered">
      
 
 <?php
@@ -135,10 +135,12 @@ Make sure you match the number of these 'circle' span elements to the number of 
               <img src=<?php echo base_url().'/images/news/'.$data_news[$h]['picture']?>>
               </div>
               <h3 class="post-title">
-               <a href="#"><?php echo $data_news[$h]['title'];?></a>
+               <a href="<?php echo base_url().'berita/detil/'.$data_news[$h]['id'];?>"><?php echo $data_news[$h]['title'];?></a>
                </h3>
-<!--                 <span class="post-date"><i class="fa fa-calendar"></i> <?php echo '1'.$i.' Oktober 2019';?></span>
- -->                </div>
+    <span class="post-date"><i class="fa fa-calendar"></i> <?php echo substr( $data_news[$h]['created_at'],0,10);?></span>
+    
+            
+           </div>
   
 
 <?
@@ -163,7 +165,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
 
 
     <!-- WISATA -->
-    <section class="our_services_area">
+    <section class="our_services_area" style="background-color: lime;">
         <div class="container">
             <div class="tittle wow fadeInUp">
                 <h2>Destinasi Wisata</h2>
@@ -179,7 +181,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
 ?>
 <div class="single_facilities col-xs-4 p0 painting photography adversting">
 <div class="single_facilities_inner">
-    <a href="#"> 
+    <a href="<?php echo base_url().'destinasi/index_/'.$data_destination_categories[$h]['id']?>"> 
  <img src=<?php echo base_url().'images/destination_categories/'.$data_destination_categories[$h]['icon']?>>
  <div class="gallery_hover">
 <h4 style="font-size: 200%;"><?php echo $data_destination_categories[$h]['title'] ?></h4>
@@ -206,7 +208,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
            <div class="container">
         <div class="row" style="text-align: center;">
             
-    	<div class="news-slider11">
+        <div class="news-slider11">
 
 
 
@@ -215,17 +217,17 @@ Make sure you match the number of these 'circle' span elements to the number of 
  for ($h = 0; $h < count($data_creative_economies); $h++)
  {?>
 <div class="thumbnail" >
-					<img src="<?php echo base_url().'images/creative_economies/'.$data_creative_economies[$h]['photo']?>" class="img-responsive">
-					<div class="caption">
-						<div class="row">
-								<h4 style="padding: 2%"><?php echo $data_creative_economies[$h]['title']?></h4>	<hr>
-						<h4 class="text-center"><span class="label label-info"><?php echo $data_creative_economies[$h]['contact_person'].'-'.$data_creative_economies[$h]['contact_number']?></span></h4>						
-						</div>
-						<p><i><?php echo $data_creative_economies[$h]['description']?></i></p>
-					
-						<p> </p>
-					</div>
-				</div>  
+                    <img src="<?php echo base_url().'images/creative_economies/'.$data_creative_economies[$h]['photo']?>" class="img-responsive">
+                    <div class="caption">
+                        <div class="row">
+                                <a href="<?php echo 'produk/detil/'.$data_creative_economies[$h]['id']?>"><h4  style="padding: 2%"><?php echo $data_creative_economies[$h]['title']?></h4></a> <hr>
+                        <h4 class="text-center"><span class="label label-info"><?php echo $data_creative_economies[$h]['contact_person'].'-'.$data_creative_economies[$h]['contact_number']?></span></h4>                       
+                        </div>
+                        <p><i><?php echo $data_creative_economies[$h]['description']?></i></p>
+                    
+                        <p> </p>
+                    </div>
+                </div>  
 <?} 
     ?>
 
@@ -234,7 +236,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
  <button style="margin-top:2%; color: black "  class="btn btn-primary">LIHAT SEMUA PRODUK</button>
 </a>
 
-	</div>
+    </div>
 </div>
         </div>
 
@@ -248,15 +250,33 @@ Make sure you match the number of these 'circle' span elements to the number of 
             <h2>Event</h2>
             <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
-        <div class="featured_gallery">
+<style type="text/css">
+    /* centered columns styles */
+.row-centered {
+text-align:center;
+}
+.col-centered {
+display:inline-block;
+float:none;
+/* reset the text-align */
+text-align:left;
+/* inline-block space fix */
+margin-right:-4px;
+}
+</style>
+
+        <div class="featured_gallery row-centered">
             <?php
                for ($h = 0; $h < count($data_events); $h++){
 ?>
-<div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-                <img src=<?php echo base_url().'images/events/'.$data_events[$h]['picture']?>>
+<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered">
+                <img style="object-fit: cover;
+
+  width: 300px;
+  height: 337px;" src=<?php echo base_url().'images/events/'.$data_events[$h]['picture']?>>
                 <div class="gallery_hover">
                     <h4><?php echo $data_events[$h]['title'] ?></h4>
-                    <a href="#">Lihat Event</a>
+                    <a href="<?php echo base_url().'event/detil/'.$data_events[$h]['id'];?>">Lihat Event</a>
                 </div>
             </div>
 
@@ -315,7 +335,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
+                    <h2>Mobile APP</h2>
                     <a href="#">
       
                      <img width="70%" height ="70%" src="images/google_play.png"></a>

@@ -79,11 +79,17 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
  
+  <?php
+               for ($h = 0; $h < count($data_slides); $h++){
+?>
+<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+  
+
+<?
+}
+?>
+
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -111,31 +117,52 @@ Make sure you match the number of these 'circle' span elements to the number of 
      <section class="latest_blog_area">
          <div class="tittle wow fadeInUp">
             <h2>Produk Anggota </h2>
+            <form class="form-signin" action="<?php echo base_url().'produk/index_/'?>" method="post"  enctype="multipart/form-data">
+      
+        <select  name="data_kategori" onchange="this.form.submit()">
+
+
+<option value="ALL">Semua
+</option>
+
+<?php
+
+for ($h = 0; $h < count($data_creative_economy_categories); $h++){
+  $temp=$data_creative_economy_categories[$h]['id'];
+  echo "<option value=\"$temp\"";
+  echo ">".$data_creative_economy_categories[$h]['title']."</option>";
+
+}
+
+?>
+</select>        
+</form>
+
             <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
             <div class="row latest_blog">
 <div class="container">
     <div class="row" style="text-align: center;">
         <div class="col-md-12">
+
             <?php
-if (is_array($dataproduk) || is_object($dataproduk))
+ for ($h = 0; $h < count($data_creative_economies); $h++)
 {
-    foreach ($dataproduk as $kontak) {?>
+?>
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail" >
-                    <img src="<?php echo base_url().'images/gallery/gl-1.jpg'?>" class="img-responsive">
-                    <div class="caption">
+                   <img src="<?php echo base_url().'images/creative_economies/'.$data_creative_economies[$h]['photo']?>" class="img-responsive">
+                     <div class="caption">
                         <div class="row">
-                                <h4 style="padding: 2%"><?php echo $kontak->nama?></h4> <hr>
-                        <h4 class="text-center"><span class="label label-info"><?php echo 'Rp : '. $kontak->harga?></span></h4>                     
+                                <a href="<?php echo 'produk/detil/'.$data_creative_economies[$h]['id']?>"><h4  style="padding: 2%"><?php echo $data_creative_economies[$h]['title']?></h4></a> <hr>
+                    <h4 class="text-center"><span class="label label-info"><?php echo $data_creative_economies[$h]['contact_person'].'-'.$data_creative_economies[$h]['contact_number']?></span></h4>                       
                         </div>
-                        <p><i><?php echo 'Outlet : '. $kontak->outlet?></i></p>
-                    
-                        <p> </p>
+                        <p><i><?php echo $data_creative_economies[$h]['description']?></i></p>
+                                            <p> </p>
                     </div>
                 </div>
                 </div>  
-<?} }
+<? }
     ?>
         </div> 
     </div>
@@ -154,11 +181,15 @@ if (is_array($dataproduk) || is_object($dataproduk))
                 
             </div>
             <div class="partners">
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-1.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-2.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-3.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-4.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-5.png'?>" alt=""></div>
+              <?php
+               for ($h = 0; $h < count($data_partners); $h++){
+?>
+<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+  
+
+<?
+}
+?>
             </div>
         </div>
     </section>

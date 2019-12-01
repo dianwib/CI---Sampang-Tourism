@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produk extends CI_Controller {
+class Gallery extends CI_Controller {
 	var $API ="";
 
     function __construct() {
-          parent::__construct();
+                   parent::__construct();
         $this->API="https://sampang-tourism.herokuapp.com/";
         $this->load->library('session');
         $this->load->library('curl');
@@ -15,7 +15,7 @@ class Produk extends CI_Controller {
 
     
    public function index()
-	{
+    {
         $url = $this->API.'slides';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -26,25 +26,27 @@ class Produk extends CI_Controller {
         $data['data_slides']=$response['data'];
 
 
-        #######ECONOMIES-CATEGORIES
-        $url = $this->API.'creative-economy-categories';
+   #######ECONOMIES-CATEGORIES
+        $url = $this->API.'galleries';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        $data['data_creative_economy_categories']=$response['data'];
+        $data['data_galleries']=$response['data'];
 
-		#######ECONOMIES
-        $url = $this->API.'creative-economies';
+
+        #######GALLERY
+        $url = $this->API.'photos-gallery';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        $data['data_creative_economies']=$response['data'];
+        $data['data_photos_gallery']=$response['data'];
+
 
 
 #######PARTNERS
@@ -58,14 +60,12 @@ class Produk extends CI_Controller {
         $data['data_partners']=$response['data'];
 
 
-        $this->load->view('produk/produk_index',$data);
-	}
+        $this->load->view('gallery/gallery_index',$data);
+    }
 
 
    public function index_()
     {
-     
-
         $url = $this->API.'slides';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -75,28 +75,31 @@ class Produk extends CI_Controller {
         $response = json_decode($response_json, true);
         $data['data_slides']=$response['data'];
 
-            #######ECONOMIES
-        $url = $this->API.'creative-economies';
+
+   #######ECONOMIES-CATEGORIES
+        $url = $this->API.'galleries';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        $data['data_creative_economies']=$response['data'];
+        $data['data_galleries']=$response['data'];
 
-        #######ECONOMIES-CATEGORIES
-        $url = $this->API.'creative-economy-categories';
+
+        #######GALLERY
+        $url = $this->API.'photos-gallery';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        $data['data_creative_economy_categories']=$response['data'];
+        $data['data_photos_gallery']=$response['data'];
 
 
-        #######PARTNERS
+
+#######PARTNERS
         $url = $this->API.'partners';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -106,18 +109,19 @@ class Produk extends CI_Controller {
         $response = json_decode($response_json, true);
         $data['data_partners']=$response['data'];
 
-   
-   $data['kategori']=$this->input->post('data_kategori');
+        $data['kategori']=$this->input->post('data_kategori');
 
         if ($this->input->post('data_kategori')=='ALL'){
-             redirect('Produk/index');
+             redirect('Gallery/index');
         }
         else{
 
 
-        $this->load->view('produk/produk_spesifik',$data);
+        $this->load->view('gallery/gallery_spesifik',$data);
     }
-}
+    }
+
+
 
     public function detil($id)
 
@@ -133,26 +137,16 @@ class Produk extends CI_Controller {
         $data['data_slides']=$response['data'];
 
 
-        #######ECONOMIES-CATEGORIES
-        $url = $this->API.'creative-economy-categories';
+ #######GALLERY
+        $url = $this->API.'photos-gallery/'.$id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        $data['data_creative_economy_categories']=$response['data'];
+        $data['data_photos_gallery']=$response;
 
-        #######ECONOMIES
-        $url = $this->API.'creative-economies/'.$id;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        $data['data_creative_economies']=$response;
-     
 
 #######PARTNERS
         $url = $this->API.'partners';
@@ -165,7 +159,7 @@ class Produk extends CI_Controller {
         $data['data_partners']=$response['data'];
 
 
-        $this->load->view('produk/produk_detil',$data);
+        $this->load->view('gallery/gallery_detil',$data);
     }
 
 

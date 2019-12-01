@@ -80,11 +80,15 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
- 
+   <?php
+               for ($h = 0; $h < count($data_slides); $h++){
+?>
+<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+  
+
+<?
+}
+?>
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -117,26 +121,26 @@ Make sure you match the number of these 'circle' span elements to the number of 
             <div class="col-md-12">
                
 
+  
+
     <?php
-    if (is_array($dataproduk) || is_object($dataproduk))
+    for ($h = 0; $h < count($data_news); $h++)
 {
-    $i=0;
-    foreach ($dataproduk as $kontak) {?>
-            <div class="col-sm-6 col-md-4">
+ ?>
+            <div class="col-sm-6 col-md-6">
 		
         	<div class="post-slide11">
              <div class="post-img">
              <span class="over-layer"></span>
-              <img src=<?php echo base_url().'/images/image_1.jpg'?>>
-              </div>
+             <img src="<?php echo base_url().'images/news/'.$data_news[$h]['picture']?>" class="img-responsive">
               <h3 class="post-title">
-               <a href="<?php echo base_url().'index.php/berita/detil_berita?id='.$kontak->id_user;?>"><?php echo 'Berita '.$i;?></a>
+               <a href="<?php echo base_url().'berita/detil/'.$data_news[$h]['id'];?>"><?php echo $data_news[$h]['title']?></a>
                </h3>
-                <span class="post-date"><i class="fa fa-calendar"></i> <?php echo '1'.$i.' Oktober 2019';?></span>
+                <span class="post-date"><i class="fa fa-calendar"></i> <?php echo $data_news[$h]['created_at'];?></span>
                 </div>
-            </div>
+            </div></div>
        
-<?$i+=1;} }
+<?} 
     ?>
                 </div>
             </div>
@@ -153,11 +157,14 @@ Make sure you match the number of these 'circle' span elements to the number of 
                 
             </div>
                      <div class="partners">
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-1.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-2.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-3.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-4.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-5.png'?>" alt=""></div>
+                <?php
+               for ($h = 0; $h < count($data_partners); $h++){
+?>
+<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+  
+<?
+}
+?>
             </div>
 
         </div>

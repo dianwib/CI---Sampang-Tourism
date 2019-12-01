@@ -79,11 +79,16 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
- 
+   <?php
+               for ($h = 0; $h < count($data_slides); $h++){
+?>
+<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+  
+
+<?
+}
+?>
+
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -113,24 +118,34 @@ Make sure you match the number of these 'circle' span elements to the number of 
             <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
 
-<div class="featured_gallery">
-            
-        <?php
+<style type="text/css">
+    /* centered columns styles */
+.row-centered {
+text-align:center;
+}
+.col-centered {
+display:inline-block;
+float:none;
+/* reset the text-align */
+text-align:left;
+/* inline-block space fix */
+margin-right:-4px;
+}
+</style>
 
-
-if (is_array($dataproduk) || is_object($dataproduk))
-{
-    foreach ($dataproduk as $kontak) {?>
-<div class="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
-        
-                <img src="<?php echo base_url().'images/gallery/gl-1.jpg'?>" alt="">
+        <div class="featured_gallery row-centered">
+            <?php
+               for ($h = 0; $h < count($data_events); $h++){
+?>
+<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered">
+                <img style="object-fit: cover;width: 300px;height: 337px;" src=<?php echo base_url().'images/events/'.$data_events[$h]['picture']?>>
                 <div class="gallery_hover">
-                    <h4><?php echo $kontak->nama?></h4>
-                    <a href="<?php echo base_url().'index.php/event/detil_event?id='.$kontak->id_user;?>">Lihat Event</a>
+                    <h4><?php echo $data_events[$h]['title']?></h4>
+                    <a href="<?php echo base_url().'event/detil/'.$data_events[$h]['id'];?>">Lihat Event</a>
                 </div>
    
         </div>  
-<?} }
+<? }
     ?>
            
         </div>
@@ -148,11 +163,16 @@ if (is_array($dataproduk) || is_object($dataproduk))
                 
             </div>
             <div class="partners">
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-1.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-2.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-3.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-4.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-5.png'?>" alt=""></div>
+                                  <?php
+               for ($h = 0; $h < count($data_partners); $h++){
+?>
+<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+  
+
+<?
+}
+?>
+
             </div>
         </div>
     </section>

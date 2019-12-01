@@ -79,7 +79,7 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
- <?php
+   <?php
                for ($h = 0; $h < count($data_slides); $h++){
 ?>
 <img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
@@ -88,6 +88,7 @@ Javascript is set up so that you can add as many images as you like, but make su
 <?
 }
 ?>
+
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -107,35 +108,69 @@ Make sure you match the number of these 'circle' span elements to the number of 
   
 </div>
 
-</section> <!-- blog area -->
-    <section class="blog_all">
-        <div class="container">
-            <div class="row m0 blog_row">
-                <div class="col-sm-8 main_blog" style="width: 100%;">
-                    <img src="images/blog/blog_hed-1.jpg" alt="">
-                    <div class="col-xs-1 p0">
-                       <div class="blog_date">
-                           <a href="#"></a>
-                       </div>
-                    </div>
-                         
+</section>
+ <!-- Our Latest Blog Area -->
+    
+    
+ <section class="featured_works row" data-stellar-background-ratio="0.3">
+        <div class="tittle wow fadeInUp">
+            <h2>Gallery</h2>
+            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
+         <form class="form-signin" action="<?php echo base_url().'gallery/index_/'?>" method="post"  enctype="multipart/form-data">
+      
+        <select name="data_kategori" onchange="this.form.submit()">
 
 
-<img src=<?php echo base_url().'/images/events/'.$data_events['picture']?>>
-                    <div class="col-xs-11 blog_content">
-                        <a class="blog_heading" href="#"><?php echo $data_events['title']?></a>
-                        <a class="post-date" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $data_events['created_at']?></a>
-                     <p style="text-align: justify;"><?php echo $data_events['content']?></p>   
-                    </div>
+<option value="ALL">Semua
+</option>
 
+<?php
 
-            </div>
-            </div>
+for ($h = 0; $h < count($data_galleries); $h++){
+  $temp=$data_galleries[$h]['id'];
+  echo "<option value=\"$temp\"";
+  echo ">".$data_galleries[$h]['title']."</option>";
+
+}
+
+?>
+</select>        
+</form>
+        </div>
+
+<style type="text/css">
+    /* centered columns styles */
+.row-centered {
+text-align:center;
+}
+.col-centered {
+display:inline-block;
+float:none;
+/* reset the text-align */
+text-align:left;
+/* inline-block space fix */
+margin-right:-4px;
+}
+</style>
+
+        <div class="featured_gallery row-centered">
+            
+    <?php
+               for ($h = 0; $h < count($data_photos_gallery); $h++){
+?>
+<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered">
+                <a href=<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>> <img style="object-fit: cover;width: 300px;height: 337px;" src=<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>></a>
+                <div class="gallery_hover"><!-- 
+                    <h4><?php echo $data_events[$h]['title']?></h4> -->
+                    <a href="<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>">Lihat</a>
+                </div>
+   
+        </div>  
+<? }
+    ?>
+           
         </div>
     </section>
-    <!-- End blog area -->
-
-   
        <!-- End Our Featured Works Area -->
 
     
@@ -149,7 +184,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
                 
             </div>
             <div class="partners">
-                     <?php
+                                  <?php
                for ($h = 0; $h < count($data_partners); $h++){
 ?>
 <div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
@@ -158,6 +193,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
 <?
 }
 ?>
+
             </div>
         </div>
     </section>

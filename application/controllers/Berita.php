@@ -5,26 +5,92 @@ class Berita extends CI_Controller {
 	var $API ="";
 
     function __construct() {
-        parent::__construct();
-        $this->API="http://sip6ikmsampang.info/";
+                  parent::__construct();
+        $this->API="https://sampang-tourism.herokuapp.com/";
         $this->load->library('session');
         $this->load->library('curl');
-        $this->load->helper('form');
-        $this->load->helper('url');
+
+        $this->load->helper(array('form', 'url'));
     }
 
     
-     public function detil_berita()
+   public function index()
     {
-         $json = json_decode($this->curl->simple_get($this->API.'produk-anggota'));
-        $data['dataproduk']=$json->data;
+        $url = $this->API.'slides';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_slides']=$response['data'];
+
+
+        #######NEWS
+        $url = $this->API.'news';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_news']=$response['data'];
+
+
+#######PARTNERS
+        $url = $this->API.'partners';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_partners']=$response['data'];
+
+
+        $this->load->view('berita/berita_index',$data);
+    }
+
+
+
+    public function detil($id)
+
+
+    {
+        $url = $this->API.'slides';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_slides']=$response['data'];
+
+
+ #######NEWS
+        $url = $this->API.'news/'.$id;
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_news']=$response;
+
+
+#######PARTNERS
+        $url = $this->API.'partners';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_partners']=$response['data'];
+
+
         $this->load->view('berita/berita_detil',$data);
     }
-	public function index()
-	{
-           $json = json_decode($this->curl->simple_get($this->API.'produk-anggota'));
-        $data['dataproduk']=$json->data;
-      
-		$this->load->view('berita/berita_index',$data);
-	}
+
+
 }

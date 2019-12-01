@@ -79,12 +79,16 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-1.jpg'?>>
-  <img class="imageSlides" src=<?php echo base_url().'/images/slider-2.jpg'?>>
- 
+     <?php
+               for ($h = 0; $h < count($data_slides); $h++){
+?>
+<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
   
+
+<?
+}
+?>
+
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
 I've shown 'span' elements because I didn't want to upload files. -->
@@ -114,24 +118,15 @@ Make sure you match the number of these 'circle' span elements to the number of 
                            <a href="#"></a>
                        </div>
                     </div>
-                             <?php $product_id = $this->input->get('id', TRUE);
-echo $product_id;
-if (is_array($dataproduk) || is_object($dataproduk))
-{    foreach ($dataproduk as $kontak) {
-        if ($product_id == $kontak->id_user){
 
-        ?>
-
-
-
+<img src=<?php echo base_url().'/images/news/'.$data_news['picture']?>>
                     <div class="col-xs-11 blog_content">
-                        <a class="blog_heading" href="#"><?php echo $kontak->nama?></a>
-                        <a class="blog_admin" href="#"><i class="fa fa-user" aria-hidden="true"></i><?php echo $kontak->created_at?></a>
-                     <p><?php echo $kontak->outlet?></p>   
+                        <a class="blog_heading" href="#"><?php echo $data_news['title']?></a>
+               
+                        <a class="post-date" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $data_news['created_at']?></a>
+                     <p style="text-align: justify;"><?php echo $data_news['content']?></p>   
                     </div>
 
-<?} }}
-    ?>
 
             </div>
             </div>
@@ -153,11 +148,15 @@ if (is_array($dataproduk) || is_object($dataproduk))
                 
             </div>
             <div class="partners">
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-1.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-2.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-3.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-4.png'?>" alt=""></div>
-                <div class="item"><img src="<?php echo base_url().'images/client_logo/client_logo-5.png'?>" alt=""></div>
+                <?php
+               for ($h = 0; $h < count($data_partners); $h++){
+?>
+<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+  
+<?
+}
+?>
+
             </div>
         </div>
     </section>

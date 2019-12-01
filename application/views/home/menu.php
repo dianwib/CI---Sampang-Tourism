@@ -5,26 +5,38 @@
                         </li>
 
                         <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ekonomi Kreatif</a>
                             <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="<?php echo base_url().'index.php/produk' ?>">Produk Anggota</a></li>
+                                <li><a href="<?php echo base_url().'produk' ?>">Daftar Anggota</a></li>
                             </ul>
                         </li>
                         <li class="dropdown submenu">
-                            <a href="<?php echo base_url().'index.php/berita' ?>">Berita</a>
+                            <a href="<?php echo base_url().'berita' ?>">Berita</a>
                         </li>
                         <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Destinasi</a>
-                            <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="#">Wisata Religi</a></li>
-                                <li><a href="#">Wisata Sejarah</a></li>
-                                <li><a href="#">Wisata Kuliner</a></li>
-                                <li><a href="#">Wisata Belanja</a></li>
-                                <li><a href="#">Wisata Budaya</a></li>
-                                <li><a href="#">Wisata Buatan</a></li>  
-                            </ul>
+                            <?php #######DESTINATIONS-CATEGORIES
+        $url = $this->API.'destination-categories';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data_destination_categories=$response['data'];
+        ?>
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Destinasi Wisata</a> <ul class="dropdown-menu other_dropdwn">
+                           
+                             <?php
+               for ($h = 0; $h < count($data_destination_categories); $h++){
+?>
+  <li><a href="<?php echo base_url().'destinasi/index_/'.$data_destination_categories[$h]['id']?>"><?php echo $data_destination_categories[$h]['title'] ?></a></li>
+
+                    <?}
+                    ?>
+                     </ul>
                         </li>
-                        <li><a href="<?php echo base_url().'index.php/event' ?>">Event</a></li>
-                        <li><a href="<?php echo base_url().'index.php/film' ?>">Film</a></li>
+                        <li><a href="<?php echo base_url().'event' ?>">Event</a></li>
+                        <li><a href="<?php echo base_url().'gallery' ?>">Galeri</a></li>
                       
                     </ul>

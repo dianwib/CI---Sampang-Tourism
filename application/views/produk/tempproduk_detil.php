@@ -79,7 +79,8 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
- <?php
+ 
+  <?php
                for ($h = 0; $h < count($data_slides); $h++){
 ?>
 <img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
@@ -88,6 +89,7 @@ Javascript is set up so that you can add as many images as you like, but make su
 <?
 }
 ?>
+
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -107,36 +109,45 @@ Make sure you match the number of these 'circle' span elements to the number of 
   
 </div>
 
-</section> <!-- blog area -->
-    <section class="blog_all">
-        <div class="container">
-            <div class="row m0 blog_row">
-                <div class="col-sm-8 main_blog" style="width: 100%;">
-                    <img src="images/blog/blog_hed-1.jpg" alt="">
-                    <div class="col-xs-1 p0">
-                       <div class="blog_date">
-                           <a href="#"></a>
-                       </div>
-                    </div>
-                         
-
-
-<img src=<?php echo base_url().'/images/events/'.$data_events['picture']?>>
-                    <div class="col-xs-11 blog_content">
-                        <a class="blog_heading" href="#"><?php echo $data_events['title']?></a>
-                        <a class="post-date" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $data_events['created_at']?></a>
-                     <p style="text-align: justify;"><?php echo $data_events['content']?></p>   
-                    </div>
-
-
-            </div>
-            </div>
+</section>
+ <!-- Our Latest Blog Area -->
+    
+ 
+<!-- PRODUK -->
+     <section class="latest_blog_area">
+         <div class="tittle wow fadeInUp">
+            <h2>Produk Anggota </h2>
+            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
-    </section>
-    <!-- End blog area -->
+            <div class="row latest_blog">
+<div class="container">
+    <div class="row" style="text-align: center;">
+        <div class="col-md-12">
 
-   
-       <!-- End Our Featured Works Area -->
+            <?php
+ for ($h = 0; $h < count($data_creative_economies); $h++)
+{
+?>
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail" >
+                   <img src="<?php echo base_url().'images/creative_economies/'.$data_creative_economies[$h]['photo']?>" class="img-responsive">
+                     <div class="caption">
+                        <div class="row">
+                                <a href="<?php echo 'produk/detil/'.$data_creative_economies[$h]['id']?>"><h4  style="padding: 2%"><?php echo $data_creative_economies[$h]['title']?></h4></a> <hr>
+                    <h4 class="text-center"><span class="label label-info"><?php echo $data_creative_economies[$h]['contact_person'].'-'.$data_creative_economies[$h]['contact_number']?></span></h4>                       
+                        </div>
+                        <p><i><?php echo $data_creative_economies[$h]['description']?></i></p>
+                                            <p> </p>
+                    </div>
+                </div>
+                </div>  
+<? }
+    ?>
+        </div> 
+    </div>
+</div>
+</div>
+    </section>
 
     
     <!-- End Our Latest Blog Area -->
@@ -149,8 +160,9 @@ Make sure you match the number of these 'circle' span elements to the number of 
                 
             </div>
             <div class="partners">
-                     <?php
-               for ($h = 0; $h < count($data_partners); $h++){
+                
+        <?php
+for ($h = 0; $h < count($data_partners); $h++){
 ?>
 <div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
   
