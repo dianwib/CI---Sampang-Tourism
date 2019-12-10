@@ -82,13 +82,16 @@
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
    <?php
                for ($h = 0; $h < count($data_slides); $h++){
+                if ($data_slides[$h]['is_visible']==true){
 ?>
 <img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
   
 
 <?
-}
+}}
 ?>
+
+
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -96,7 +99,7 @@ I've shown 'span' elements because I didn't want to upload files. -->
   <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
   <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
   
-  <div class="slideshowCircles">
+  <div class="slideshowCircles" style="visibility: hidden;">
 <!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
 Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
     <span class="circle dot"></span>
@@ -136,7 +139,8 @@ Make sure you match the number of these 'circle' span elements to the number of 
               <h3 class="post-title">
                <a href="<?php echo base_url().'berita/detil/'.$data_news[$h]['id'];?>"><?php echo $data_news[$h]['title']?></a>
                </h3>
-                <span class="post-date"><i class="fa fa-calendar"></i> <?php echo $data_news[$h]['created_at'];?></span>
+                <span class="post-date"><i class="fa fa-calendar"></i> <?php echo substr( $data_news[$h]['created_at'],0,10);?></span>
+    
                 </div>
             </div></div>
        

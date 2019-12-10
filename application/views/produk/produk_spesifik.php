@@ -80,15 +80,17 @@
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
  
-  <?php
+   <?php
                for ($h = 0; $h < count($data_slides); $h++){
+                if ($data_slides[$h]['is_visible']==true){
 ?>
 <img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
   
 
 <?
-}
+}}
 ?>
+
 
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
@@ -97,7 +99,7 @@ I've shown 'span' elements because I didn't want to upload files. -->
   <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
   <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
   
-  <div class="slideshowCircles">
+  <div class="slideshowCircles" style="visibility: hidden;">
 <!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
 Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
     <span class="circle dot"></span>
