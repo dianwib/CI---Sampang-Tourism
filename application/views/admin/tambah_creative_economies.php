@@ -130,9 +130,9 @@
               </td>
               <td><input type="number" class="title-value" name="contact_number" required>
               </td>
-              <td><input type="number" class="title-value" name="latitude" required>
+              <td><input type="text" class="title-value" name="latitude" required>
               </td>
-              <td><input type="number" class="title-value" name="longitude" required>
+              <td><input type="text" class="title-value" name="longitude" required>
               </td>
             </tr>
           </table>

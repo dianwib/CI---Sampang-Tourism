@@ -140,6 +140,21 @@ class Destinasi extends CI_Controller {
         $response = json_decode($response_json, true);
         $data['data_partners']=$response['data'];
 
+#####MAPS
+    $latitude=$data['data_destinations']['latitude'];
+    $longitude=$data['data_destinations']['longitude'];
+
+        $this->load->library('googlemaps');
+
+    $config['center'] = $latitude.','. $longitude;
+    $config['zoom'] = 15;
+    $this->googlemaps->initialize($config);
+
+    $marker = array();
+    $marker['position'] = $latitude.','. $longitude;
+    $this->googlemaps->add_marker($marker);
+    $data['map'] = $this->googlemaps->create_map();
+
 
         $this->load->view('destinasi/destinasi_detil',$data);
     }

@@ -107,7 +107,7 @@ class Produk extends CI_Controller {
         $data['data_partners']=$response['data'];
 
    
-   $data['kategori']=$this->input->post('data_kategori');
+        $data['kategori']=$this->input->post('data_kategori');
 
         if ($this->input->post('data_kategori')=='ALL'){
              redirect('Produk/index');
@@ -163,6 +163,21 @@ class Produk extends CI_Controller {
         curl_close($ch);
         $response = json_decode($response_json, true);
         $data['data_partners']=$response['data'];
+
+#####MAPS
+    $latitude=$data['data_creative_economies']['latitude'];
+    $longitude=$data['data_creative_economies']['longitude'];
+
+        $this->load->library('googlemaps');
+
+    $config['center'] = $latitude.','. $longitude;
+    $config['zoom'] = 15;
+    $this->googlemaps->initialize($config);
+
+    $marker = array();
+    $marker['position'] = $latitude.','. $longitude;
+    $this->googlemaps->add_marker($marker);
+    $data['map'] = $this->googlemaps->create_map();
 
 
         $this->load->view('produk/produk_detil',$data);

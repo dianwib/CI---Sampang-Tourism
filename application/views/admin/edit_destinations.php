@@ -177,9 +177,9 @@ for ($m = 0; $m < 60; $m++)
 </select>
 
               </td>
-              <td><input type="number" class="title-value" name="latitude" value="<?php echo $data->latitude; ?>" required>
+              <td><input type="text" class="title-value" name="latitude" value="<?php echo $data->latitude; ?>" required>
               </td>
-              <td><input type="number" class="title-value" name="longitude" value="<?php echo $data->longitude; ?>" required>
+              <td><input type="text" class="title-value" name="longitude" value="<?php echo $data->longitude; ?>" required>
               </td>
             </tr>
           </table>

@@ -147,9 +147,9 @@ for ($m = 0; $m < 60; $m++) printf("<option value=\"$m\"" . (!$m ? " selected" :
 </select>
 
               </td>
-              <td><input type="number" class="title-value" name="latitude" required>
+              <td><input type="text" class="title-value" name="latitude" required>
               </td>
-              <td><input type="number" class="title-value" name="longitude" required>
+              <td><input type="text" class="title-value" name="longitude" required>
               </td>
             </tr>
           </table>

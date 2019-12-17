@@ -132,13 +132,18 @@ Make sure you match the number of these 'circle' span elements to the number of 
                      <div class="caption">
                         <div class="row">
                                 <a href="<?php echo 'produk/detil/'.$data_destinations['id']?>"><h4  style="padding: 2%"><?php echo $data_destinations['title']?></h4></a> <hr>
-                  <h4 class="text-center"><span class="label label-info"><?php echo 'Buka Pukul: '.$data_destinations['opening_hours'].'-'.$data_destinations['closing_hours']?></span></h4>                       
+                  <h4 class="text-center"><span class="label label-info" style="white-space: normal;"><?php echo 'Buka Pukul: '.$data_destinations['opening_hours'].'-'.$data_destinations['closing_hours']?></span></h4>                       
                                             
                                        
-                        </div>
+                        </div><br>
                         <p><i><?php echo $data_destinations['description']?></i></p>
-                        <h4 class="text-center"><span class="label label-info"><?php echo $data_destinations['address']?><?php echo ' || Latitude'.':'.$data_destinations['latitude']?>      <?php echo ' Longitude'.':'.$data_destinations['longitude']?></span></h4>     
+                        <br>
+                        <h4 class="text-center"><span class="label label-info" style="white-space: normal;"><?php echo"Alamat : " .$data_destinations['address']?></span></h4>     
                                             <p> </p>
+                                            <br><br><br>
+
+<head><?php echo $map['js']; ?></head>
+<body ><?php echo $map['html']; ?></body>
                     </div>
                 </div>
                 </div>  
