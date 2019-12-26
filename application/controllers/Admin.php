@@ -17,6 +17,20 @@ class Admin extends CI_Controller {
 
     }
 
+    function dashboard()
+    {
+$url = $this->API.'events';
+        $ch = curl_init($url);
+curl_setopt($ch, CURLOPT_HTTPGET, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response_json = curl_exec($ch);
+curl_close($ch);
+$response = json_decode($response_json, true);
+    $data['data']=$response['data'];
+    $this->load->view('admin/admin_dashboard',$data);
+
+    }
+
     function events()
     {
 $url = $this->API.'events';
@@ -89,12 +103,19 @@ function tambah_events()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/events";</script>';    
+        
+       echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Event");'; 
+echo 'document.location.href ="'.base_url().'Admin/events";';
+echo '</script>';      
 
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/events";</script>';    
+                    echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Event");'; 
+echo 'document.location.href ="'.base_url().'Admin/events";';
+echo '</script>';      
 
         }
     }
@@ -188,7 +209,10 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/events";</script>';    
+       echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Event");'; 
+echo 'document.location.href ="'.base_url().'Admin/events";';
+echo '</script>';     
     }
 
 ###########slides
@@ -262,12 +286,20 @@ $response = json_decode($response_json, true);
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/slides";</script>';                    }
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Slider");'; 
+        echo 'document.location.href ="'.base_url().'Admin/slides";';
+        echo '</script>';
+                  }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/slides";</script>';                   }
-
+echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Slider");'; 
+        echo 'document.location.href ="'.base_url().'Admin/slides";';
+        echo '</script>';
+        
     }
+}
     function delete_slides($id)
     {
    $url = $this->API.'slides/'.$id;
@@ -312,7 +344,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-     echo '<script language="javascript">alert("Berhasil Menon-aktifkan Slide"); document.location="../../Admin/slides";</script>';
+    echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menonaktifkan Slider");'; 
+        echo 'document.location.href ="'.base_url().'Admin/slides";';
+        echo '</script>';
+        
      
     }
             function tampil_slides($id)
@@ -341,7 +377,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-                            echo '<script language="javascript">alert("Berhasil Meng-aktifkan Slide"); document.location="../../Admin/slides";</script>';
+                         echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengaktifkan Slider");'; 
+        echo 'document.location.href ="'.base_url().'Admin/slides";';
+        echo '</script>';
+        
      
     }
 
@@ -419,12 +459,20 @@ $response = json_decode($response_json, true);
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/news";</script>';    
+       echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Berita");'; 
+        echo 'document.location.href ="'.base_url().'Admin/news";';
+        echo '</script>';
+        
 
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/news";</script>';    
+                    echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menghapus Slider");'; 
+        echo 'document.location.href ="'.base_url().'Admin/news";';
+        echo '</script>';
+        
 
         }
     }
@@ -518,7 +566,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/news";</script>';    
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Berita");'; 
+        echo 'document.location.href ="'.base_url().'Admin/news";';
+        echo '</script>';
+            
     }
 
 
@@ -596,12 +648,20 @@ $response = json_decode($response_json, true);
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/partners";</script>';    
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Partner");'; 
+        echo 'document.location.href ="'.base_url().'Admin/partners";';
+        echo '</script>';
+         
 
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/partners";</script>';    
+         
+        echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Partner");'; 
+        echo 'document.location.href ="'.base_url().'Admin/partners";';
+        echo '</script>';    
 
         }
     }
@@ -694,7 +754,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/partners";</script>';    
+        
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Partner");'; 
+        echo 'document.location.href ="'.base_url().'Admin/partners";';
+        echo '</script>';
     }
 
 
@@ -751,7 +815,11 @@ $response = json_decode($response_json, true);
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/galleries";</script>';  
+
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Kategori Galeri");'; 
+        echo 'document.location.href ="'.base_url().'Admin/galleries";';
+        echo '</script>'; 
     }
 
     function delete_galleries($id)
@@ -808,7 +876,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/galleries";</script>';    
+        
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Kategori Galeri");'; 
+        echo 'document.location.href ="'.base_url().'Admin/galleries";';
+        echo '</script>';
     }
 
 ################photos_gallery
@@ -892,13 +964,20 @@ $response = json_decode($response_json, true);
         // Close cURL session handle
         
         curl_close($ch); 
-         echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/photos_gallery";</script>';    
-
+         
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Galeri Foto");'; 
+        echo 'document.location.href ="'.base_url().'Admin/photos_gallery";';
+        echo '</script>';
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/photos_gallery";</script>';    
 
+        echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Galeri Foto");'; 
+        echo 'document.location.href ="'.base_url().'Admin/photos_gallery";';
+        echo '</script>';
+                
         }
     }
 
@@ -990,7 +1069,7 @@ $response_json = curl_exec($ch);
     //     $response_json = curl_exec($ch);
     //     curl_close($ch);
     //     $response=json_decode($response_json, true);
-    //     echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/photos_gallery";</script>';    
+    //     echo '<script language="javascript">alert("Succes edit"); document.location="?php echo base_url().'../Admin/photos_gallery";</script>';    
     // }
 
 ###########DESTINATION-CATEGORIES
@@ -1067,13 +1146,20 @@ function tambah_destination_categories()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/destination_categories";</script>';    
 
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Kategori Destinasi");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destination_categories";';
+        echo '</script>';
+                
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/destination_categories";</script>';    
-
+                
+        echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Kategori Destinasi");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destination_categories";';
+        echo '</script>';
         }
     }
 
@@ -1166,7 +1252,11 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/destination_categories";</script>';    
+        
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Kategori Destinasi");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destination_categories";';
+        echo '</script>';    
     }
 
 
@@ -1312,13 +1402,19 @@ function tambah_destinations()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/destinations";</script>';    
+        
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Destinasi Wisata");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destinations";';
+        echo '</script>';   
 
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/destinations";</script>';    
-
+echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Destinasi Wisata");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destinations";';
+        echo '</script>';   
         }
     }
 
@@ -1430,7 +1526,10 @@ function tambah_destinations()
         curl_close($ch);
         $response=json_decode($response_json, true);
 
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/destinations";</script>';    
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Destinasi Wisata");'; 
+        echo 'document.location.href ="'.base_url().'Admin/destinations";';
+        echo '</script>';      
     }
 
 ##########creative-economy-categories
@@ -1507,12 +1606,17 @@ function tambah_creative_economies_categories()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/creative_economies_categories";</script>';    
-
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Kategori Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies_categories";';
+        echo '</script>';   
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/creative_economies_categories";</script>';    
+                 echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Kategori Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies_categories";';
+        echo '</script>';       
 
         }
     }
@@ -1606,7 +1710,10 @@ $response_json = curl_exec($ch);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/creative_economies_categories";</script>';    
+echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Megedit Kategori Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies_categories";';
+        echo '</script>';   
     }
 
 
@@ -1748,12 +1855,17 @@ function tambah_creative_economies()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/creative_economies";</script>';    
-
+echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Anggota Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies";';
+        echo '</script>';   
                 }
 
                 else{
-                    echo '<script language="javascript">alert("Failed upload"); document.location="../Admin/creative_economies";</script>';    
+                 echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Anggota Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies";';
+        echo '</script>';       
 
         }
     }
@@ -1864,7 +1976,11 @@ function tambah_creative_economies()
         curl_close($ch);
         $response=json_decode($response_json, true);
 
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/creative_economies";</script>';    
+        
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Anggota Ekonomi Kreatif");'; 
+        echo 'document.location.href ="'.base_url().'Admin/creative_economies";';
+        echo '</script>';    
     }
 
 
@@ -1926,7 +2042,10 @@ function tambah_profile()
         // Close cURL session handle
         
         curl_close($ch); 
-        echo '<script language="javascript">alert("Succes upload"); document.location="../Admin/profile";</script>';    
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Pofil");'; 
+        echo 'document.location.href ="'.base_url().'Admin/profile";';
+        echo '</script>';    
 
     }
 
@@ -1990,7 +2109,10 @@ $response_json = curl_exec($ch);
         curl_close($ch);
         $response=json_decode($response_json, true);
         // print_r($response);
-        echo '<script language="javascript">alert("Succes edit"); document.location="../../Admin/profile";</script>';    
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Pofil");'; 
+        echo 'document.location.href ="'.base_url().'Admin/profile";';
+        echo '</script>';        
     }
 
 

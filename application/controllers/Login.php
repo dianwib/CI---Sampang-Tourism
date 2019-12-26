@@ -53,11 +53,20 @@ curl_close($ch);
 $json = json_decode($result);
 if ($json->accessToken != "") {
 	$this->session->set_userdata('token',$json->accessToken);
-	echo '<script language="javascript">alert("Login berhasil"); document.location="../Admin/events";</script>';	
+	
+
+echo '<script type="text/javascript">'; 
+echo 'alert("Login Berhasil");'; 
+echo 'document.location.href ="'.base_url().'Admin/dashboard";';
+echo '</script>';	
 
 			}	
 else{
-	echo '<script language="javascript">alert("Login gagal"); document.location="../Login";</script>';	
+
+echo '<script type="text/javascript">'; 
+echo 'alert("Login Gagal");'; 
+echo 'document.location.href ="'.base_url().'Login";';
+echo '</script>';	
 
 }
 
@@ -66,7 +75,10 @@ else{
 	function logout(){
 
 		$this->session->sess_destroy();
-				echo '<script language="javascript">alert("Logout"); document.location="../login";</script>';			
+				echo '<script type="text/javascript">'; 
+echo 'alert("Logout");'; 
+echo 'document.location.href ="'.base_url().'Login";';
+echo '</script>';	
 	}	
 
 }
