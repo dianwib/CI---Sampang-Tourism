@@ -2117,7 +2117,186 @@ echo 'alert("Berhasil Mengedit Pofil");';
 
 
 
+###########downloads
+        function data_publik()
+    {
+$url = $this->API.'downloads';
+        $ch = curl_init($url);
+curl_setopt($ch, CURLOPT_HTTPGET, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response_json = curl_exec($ch);
+curl_close($ch);
+$response = json_decode($response_json, true);
+    $data['data']=$response['data'];
+    $this->load->view('admin/admin_data_publik',$data);
 
+    }
+
+function tambah_data_publik()
+    {
+        $this->load->view('admin/tambah_data_publik');
+    }
+
+
+    function post_data_publik()
+    {
+        
+        $this->load->library('upload');
+        $config['upload_path'] = './data/data_publik/'; //path folder
+        $config['allowed_types'] = 'doc|docx|pdf|xlsx|xls|csv'; //type yang dapat diakses bisa anda sesuaikan
+        $this->upload->initialize($config);
+ 
+            if ($this->upload->do_upload('picture') ){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['source_image']='./data/data_publik/'.$gbr['file_name'];
+                
+                $this->load->library('upload', $config);
+                $gambar1=$gbr['file_name'];
+                
+                        $url = $this->API.'downloads';
+        $ch = curl_init($url);
+        $authorization="Authorization: Bearer ".$this->token;
+
+
+        $title=$this->input->post('title');
+        $description=$this->input->post('description');
+        $url=base_url().'data/data_publik/'.$gbr['file_name'];
+
+        $data = array(
+        'title' => $title,
+        'description' => $description,
+        'picture' => $gambar1,
+        'url' => $url
+        
+        );
+        
+        $payload = json_encode($data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',$authorization));
+
+        // Prepare new cURL resource
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        // Set HTTP Header for POST request
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        // Submit the POST request
+        $result = curl_exec($ch);
+ 
+        // Close cURL session handle
+        
+        curl_close($ch); 
+
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Menambah Data Publik");'; 
+        echo 'document.location.href ="'.base_url().'Admin/data_publik";';
+        echo '</script>';
+                
+                }
+
+                else{
+                
+        echo '<script type="text/javascript">'; 
+echo 'alert("Gagal Menambah Data Publik");'; 
+        echo 'document.location.href ="'.base_url().'Admin/data_publik";';
+        echo '</script>';
+        }
+    }
+
+    function delete_data_publik($id)
+    {
+   $url = $this->API.'downloads/'.$id;
+        $ch = curl_init($url);
+        $authorization="Authorization: Bearer ".$this->token;
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',$authorization));
+       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response_json = curl_exec($ch);
+        
+        curl_close($ch); 
+        $response=json_decode($response_json, true);
+#echo($response_json);
+        redirect('Admin/data_publik');
+
+    }
+
+    function edit_data_publik($id){
+        $json = json_decode($this->curl->simple_get($this->API.'downloads/'.$id));
+         $data['data']=$json;
+    
+        $this->load->view('admin/edit_data_publik',$data);
+    }
+
+        function put_data_publik($id)
+    {
+
+        if (empty($_FILES['picture']['name'])){
+            $gambar1=$this->input->post('temp_picture');
+            $url=$this->input->post('url');
+
+        
+        }
+        else{
+           
+         $this->load->library('upload');
+        $config['upload_path'] = './data/data_publik/'; //path folder
+        $config['allowed_types'] = 'doc|docx|pdf|xlsx|xls|csv'; //type yang dapat diakses bisa anda sesuaikan
+        $this->upload->initialize($config);
+        
+
+            if ($this->upload->do_upload('picture') ){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['source_image']='./data/data_publik/'.$gbr['file_name'];
+                
+                $this->load->library('upload', $config);
+                $gambar1=$gbr['file_name'];
+                $url=base_url().'data/data_publik/'.$gbr['file_name'];
+                
+               
+            }
+        }
+        $created=$this->input->post('created_at');
+        $updated=date('Y-m-d H:i:s');
+
+       $title=$this->input->post('title');
+        $description=$this->input->post('description');
+        
+
+        $data = array(
+        'title' => $title,
+        'description' => $description,
+        'picture' => $gambar1,
+        'url' => $url,
+        'created_at'=>$created,
+        'updated_at'=>$updated
+        
+        
+        );
+
+        $url = $this->API.'downloads/'.$id;
+        $ch = curl_init($url);
+        $authorization="Authorization: Bearer ".$this->token;
+
+        $payload=json_encode($data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',$authorization));
+
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST,'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response=json_decode($response_json, true);
+        
+        print_r($response);
+        echo '<script type="text/javascript">'; 
+echo 'alert("Berhasil Mengedit Kategori Destinasi");'; 
+        echo 'document.location.href ="'.base_url().'Admin/data_publik";';
+        echo '</script>';    
+    }
 
 
 
