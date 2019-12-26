@@ -8,7 +8,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Events</title>
+  <title>Event</title>
   
      <?php $this->load->view('admin/admin_navbaratas');?>
     <!-- partial -->
@@ -27,7 +27,7 @@
  <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Tambah Events</h4>
+                  <h4 class="card-title">Tambah Event</h4>
                   <hr>
 
 

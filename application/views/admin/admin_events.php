@@ -82,9 +82,12 @@
   <div class="modal-dialog modal-dialog-lg">
     <a href="#!" class="modal-close">&times;</a>
     <h3><?php echo $data['title']; ?></h3>
-    <div class="modal-content newspaper">
+    <div class="modal-content eventspaper">
       <div class="card">
                 <div class="card-body">
+                  <div class="row">
+                  <div class="col-sm">
+                    
                      <div class="form-group" style="text-align: center;">
                       <img  src="<?=base_url().'images/events/'.$data['picture']; ?>" style="max-width: 100%;
     height: auto;
@@ -93,11 +96,16 @@
     text-align: center;
     " >
      </div>
+   </div>
+   <div class="col-sm">
+                  
                       
                     <div class="form-group">
                       <label for="exampleInputUsername1">Deskripsi Event</label>
                       <textarea readonly class="form-control" rows="10" ><?php echo $data['content']; ?></textarea>
                     </div>
+                  </div>
+                </div>
                     <div class="form-group">
                       <input type="text" class="form-control" disabled value="<?php echo $data['created_at']; ?>">
                     </div>
