@@ -8,8 +8,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <name>Partner</name>
-  
+  <title> Partner</title>
      <?php $this->load->view('admin/admin_navbaratas');?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">

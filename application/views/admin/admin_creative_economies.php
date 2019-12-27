@@ -1,3 +1,7 @@
+<style type="text/css">
+<?php include 'body.css'; ?>
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <style>
@@ -86,7 +90,7 @@
         <!-- <td class="align-middle"><?php echo $data->updated_at; ?></td>
          --><td class="align-middle text-center">
 
-          <a  href="<?php echo '#detil'.$no;?>" data-id="<?php echo $data['id']; ?>"  class="btn btn-info btn-form-ubah" style="color: white;"><span class="ti-eye"></span>lihat</a>
+          <a  href="<?php echo '#detil'.$no;?>" data-id="<?php echo $data['id']; ?>"  class="btn btn-info btn-form-ubah" style="color: white;"><span class="ti-eye"></span> lihat</a>
 
           <a href="<?php echo base_url().'admin/edit_creative_economies/'.$data['id']?>" data-id="<?php echo $data['id']; ?>"  class="btn btn-warning btn-form-ubah" style="color: white;"><span class="ti-pencil"></span>ubah</a>
 
