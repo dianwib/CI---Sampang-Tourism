@@ -19,6 +19,9 @@ class Admin extends CI_Controller {
 
     function dashboard()
     {
+
+        $data['base_url']=$this->API;
+
         ####### creative-economy-categories
         $url = $this->API.'creative-economy-categories';
         $ch = curl_init($url);
@@ -147,6 +150,7 @@ class Admin extends CI_Controller {
 
     function events()
     {
+        $data['base_url']=$this->API;
 $url = $this->API.'events';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -168,24 +172,33 @@ function tambah_events()
     function post_events()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/events/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/events/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/events/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
+        
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-event-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
                 
                         $url = $this->API.'events';
         $ch = curl_init($url);
@@ -198,7 +211,7 @@ function tambah_events()
         $data = array(
         'title' => $title,
         'content' => $content,
-        'picture' => $gambar1
+        'picture' => $json->id
         );
         
         $payload = json_encode($data);
@@ -223,15 +236,7 @@ echo 'alert("Berhasil Menambah Event");';
 echo 'document.location.href ="'.base_url().'Admin/events";';
 echo '</script>';      
 
-                }
-
-                else{
-                    echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Event");'; 
-echo 'document.location.href ="'.base_url().'Admin/events";';
-echo '</script>';      
-
-        }
+                
     }
 
     function delete_events($id)
@@ -255,7 +260,7 @@ $response_json = curl_exec($ch);
     function edit_events($id){
         $json = json_decode($this->curl->simple_get($this->API.'events/'.$id));
          $data['data']=$json;
-    
+    $data['base_url']=$this->API;
         $this->load->view('admin/edit_events',$data);
     }
 
@@ -269,28 +274,33 @@ $response_json = curl_exec($ch);
         }
         else{
            
-        $this->load->library('upload');
-        $config['upload_path'] = './images/events/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-event-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/events/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/events/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+  $gambar1=$json->id;
         }
        
 
@@ -353,66 +363,68 @@ $response = json_decode($response_json, true);
 
     function post_slides()
     {
-                $this->load->library('upload');
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-slide-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-        
-        $config['upload_path'] = './images/slides/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
-            if ($this->upload->do_upload('picture') ){
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
 
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/slides/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/slides/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-        $url = $this->API.'slides';
-        $ch = curl_init($url);
+  $json = json_decode($result);
+  
+
         $authorization="Authorization: Bearer ".$this->token;
 
 
         $data = array(
-        'picture' => $gambar1,
+        'picture' => $json->id,
         'is_visible'=>True
         );
         $payload = json_encode($data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',$authorization));
+       
 
+        $url= $this->API.'slides';
+        $ch = curl_init($url);
         // Prepare new cURL resource
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_POST, true);
         // Set HTTP Header for POST request
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+         $authorization="Authorization: Bearer ".$this->token;
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',$authorization));
+
         // Submit the POST request
         $result = curl_exec($ch);
  
         // Close cURL session handle
         
         curl_close($ch); 
+        
         echo '<script type="text/javascript">'; 
 echo 'alert("Berhasil Menambah Slider");'; 
         echo 'document.location.href ="'.base_url().'Admin/slides";';
         echo '</script>';
-                  }
-
-                else{
-echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Slider");'; 
-        echo 'document.location.href ="'.base_url().'Admin/slides";';
-        echo '</script>';
-        
-    }
+                 
 }
     function delete_slides($id)
     {
@@ -503,6 +515,7 @@ echo 'alert("Berhasil Mengaktifkan Slider");';
 ################NEWS
         function news()
     {
+  $data['base_url']=$this->API;
 $url = $this->API.'news';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -524,24 +537,32 @@ $response = json_decode($response_json, true);
     function post_news()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/news/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/news/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/news/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-news-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
                 
                         $url = $this->API.'news';
         $ch = curl_init($url);
@@ -554,7 +575,7 @@ $response = json_decode($response_json, true);
         $data = array(
         'title' => $title,
         'content' => $content,
-        'picture' => $gambar1
+        'picture' => $json->id
         );
         
         $payload = json_encode($data);
@@ -579,16 +600,7 @@ echo 'alert("Berhasil Menambah Berita");';
         echo '</script>';
         
 
-                }
-
-                else{
-                    echo '<script type="text/javascript">'; 
-echo 'alert("Berhasil Menghapus Slider");'; 
-        echo 'document.location.href ="'.base_url().'Admin/news";';
-        echo '</script>';
-        
-
-        }
+                
     }
 
     function delete_news($id)
@@ -613,6 +625,7 @@ $response_json = curl_exec($ch);
         $json = json_decode($this->curl->simple_get($this->API.'news/'.$id));
          $data['data']=$json;
     
+  $data['base_url']=$this->API;
         $this->load->view('admin/edit_news',$data);
     }
 
@@ -626,28 +639,33 @@ $response_json = curl_exec($ch);
         }
         else{
            
-        $this->load->library('upload');
-        $config['upload_path'] = './images/news/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+       $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-news-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/news/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/news/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+  $gambar1=$json->id;
         }
        
 
@@ -691,6 +709,7 @@ echo 'alert("Berhasil Mengedit Berita");';
 ################PARTNERS
         function partners()
     {
+        $data['base_url']=$this->API;
 $url = $this->API.'partners';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -712,26 +731,34 @@ $response = json_decode($response_json, true);
     function post_partners()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/partners/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/partners/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/partners/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-                        $url = $this->API.'partners';
+$authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-partner-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+
+        $url = $this->API.'partners';
         $ch = curl_init($url);
         $authorization="Authorization: Bearer ".$this->token;
 
@@ -741,7 +768,7 @@ $response = json_decode($response_json, true);
 
         $data = array(
         'name' => $name,
-        'picture' => $gambar1,
+        'picture' => $json->id,
         'url' => $url
         
         );
@@ -768,16 +795,6 @@ echo 'alert("Berhasil Menambah Partner");';
         echo '</script>';
          
 
-                }
-
-                else{
-         
-        echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Partner");'; 
-        echo 'document.location.href ="'.base_url().'Admin/partners";';
-        echo '</script>';    
-
-        }
     }
 
     function delete_partners($id)
@@ -801,6 +818,7 @@ $response_json = curl_exec($ch);
     function edit_partners($id){
         $json = json_decode($this->curl->simple_get($this->API.'partners/'.$id));
          $data['data']=$json;
+         $data['base_url']=$this->API;
     
         $this->load->view('admin/edit_partners',$data);
     }
@@ -815,28 +833,33 @@ $response_json = curl_exec($ch);
         }
         else{
            
-        $this->load->library('upload');
-        $config['upload_path'] = './images/partners/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+        $authorization="Authorization: Bearer ".$this->token;
+          $url_gambar= $this->API.'upload-partner-picture';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/partners/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/partners/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+$gambar1=$json->id;
         }
        
 
@@ -879,6 +902,7 @@ echo 'alert("Berhasil Mengedit Partner");';
 ################GALLERIES
         function galleries()
     {
+
 $url = $this->API.'galleries';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1000,6 +1024,8 @@ echo 'alert("Berhasil Mengedit Kategori Galeri");';
 ################photos_gallery
 function photos_gallery()
     {
+        $data['base_url']=$this->API;
+    
 $url = $this->API.'photos-gallery';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1030,24 +1056,33 @@ $response = json_decode($response_json, true);
     function post_photos_gallery()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/photos_gallery/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/photos_gallery/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/photos_gallery/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
+        $authorization="Authorization: Bearer ".$this->token;
+          $url_gambar= $this->API.'upload-gallery-photo';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+$gambar1=$json->id;
                 
                         $url = $this->API.'photos-gallery';
         $ch = curl_init($url);
@@ -1083,16 +1118,7 @@ $response = json_decode($response_json, true);
 echo 'alert("Berhasil Menambah Galeri Foto");'; 
         echo 'document.location.href ="'.base_url().'Admin/photos_gallery";';
         echo '</script>';
-                }
-
-                else{
-
-        echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Galeri Foto");'; 
-        echo 'document.location.href ="'.base_url().'Admin/photos_gallery";';
-        echo '</script>';
-                
-        }
+               
     }
 
     function delete_photos_gallery($id)
@@ -1189,6 +1215,7 @@ $response_json = curl_exec($ch);
 ###########DESTINATION-CATEGORIES
         function destination_categories()
     {
+        $data['base_url']=$this->API;
 $url = $this->API.'destination-categories';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1210,25 +1237,33 @@ function tambah_destination_categories()
     function post_destination_categories()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/destination_categories/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/destination_categories/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/destination_categories/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
+       $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-destination-category-icon';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+$gambar1=$json->id;
                         $url = $this->API.'destination-categories';
         $ch = curl_init($url);
         $authorization="Authorization: Bearer ".$this->token;
@@ -1265,16 +1300,7 @@ function tambah_destination_categories()
 echo 'alert("Berhasil Menambah Kategori Destinasi");'; 
         echo 'document.location.href ="'.base_url().'Admin/destination_categories";';
         echo '</script>';
-                
-                }
-
-                else{
-                
-        echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Kategori Destinasi");'; 
-        echo 'document.location.href ="'.base_url().'Admin/destination_categories";';
-        echo '</script>';
-        }
+               
     }
 
     function delete_destination_categories($id)
@@ -1296,6 +1322,7 @@ $response_json = curl_exec($ch);
     }
 
     function edit_destination_categories($id){
+        $data['base_url']=$this->API;
         $json = json_decode($this->curl->simple_get($this->API.'destination-categories/'.$id));
          $data['data']=$json;
     
@@ -1311,29 +1338,33 @@ $response_json = curl_exec($ch);
         
         }
         else{
-           
-        $this->load->library('upload');
-        $config['upload_path'] = './images/destination_categories/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-destination-category-icon';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/destination_categories/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/destination_categories/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+$gambar1=$json->id;
         }
        
 
@@ -1378,6 +1409,7 @@ echo 'alert("Berhasil Mengedit Kategori Destinasi");';
 
 ###########DESTINATIONS
     function destinations_spesifik(){
+         $data['base_url']=$this->API;
        $url = $this->API.'destinations';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1413,6 +1445,7 @@ $response1 = json_decode($response_json1, true);
 
         function destinations()
     {
+         $data['base_url']=$this->API;
     $url = $this->API.'destinations';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1430,6 +1463,10 @@ $response_json1 = curl_exec($ch1);
 curl_close($ch1);
 $response1 = json_decode($response_json1, true);
     $data['data_kategori']=$response1['data'];
+
+
+
+
     $this->load->view('admin/admin_destinations',$data);
 
     }
@@ -1452,24 +1489,32 @@ function tambah_destinations()
     function post_destinations()
     {
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/destinations/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/destinations/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/destinations/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-destination-photo';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  
+  $json = json_decode($result);
+$gambar1=$json->id;
                 
                         $url = $this->API.'destinations';
         $ch = curl_init($url);
@@ -1522,14 +1567,7 @@ echo 'alert("Berhasil Menambah Destinasi Wisata");';
         echo 'document.location.href ="'.base_url().'Admin/destinations";';
         echo '</script>';   
 
-                }
-
-                else{
-echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Destinasi Wisata");'; 
-        echo 'document.location.href ="'.base_url().'Admin/destinations";';
-        echo '</script>';   
-        }
+               
     }
 
     function delete_destinations($id)
@@ -1551,6 +1589,7 @@ echo 'alert("Gagal Menambah Destinasi Wisata");';
     }
 
     function edit_destinations($id){
+         $data['base_url']=$this->API;
         $json = json_decode($this->curl->simple_get($this->API.'destinations/'.$id));
         $json1 = json_decode($this->curl->simple_get($this->API.'destination-categories'));
          $data['data']=$json;
@@ -1568,28 +1607,33 @@ echo 'alert("Gagal Menambah Destinasi Wisata");';
         }
         else{
            
-        $this->load->library('upload');
-        $config['upload_path'] = './images/destinations/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-destination-photo';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/destinations/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/destinations/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+$gambar1=$json->id;
         }
        $destination_id=$this->input->post('destination_id');
    $title=$this->input->post('title');
@@ -1649,6 +1693,7 @@ echo 'alert("Berhasil Mengedit Destinasi Wisata");';
 ##########creative-economy-categories
         function creative_economies_categories()
     {
+        $data['base_url']=$this->API;
 $url = $this->API.'creative-economy-categories';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1669,27 +1714,36 @@ function tambah_creative_economies_categories()
 
     function post_creative_economies_categories()
     {
+
+
+$authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-creative-economy-category-icon';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/creative_economies_categories/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/creative_economies_categories/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/creative_economies_categories/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-                        $url = $this->API.'creative-economy-categories';
+        $url = $this->API.'creative-economy-categories';
         $ch = curl_init($url);
         $authorization="Authorization: Bearer ".$this->token;
 
@@ -1699,7 +1753,7 @@ function tambah_creative_economies_categories()
 
         $data = array(
         'title' => $title,
-        'icon' => $gambar1,
+        'icon' => $json->id,
         'order' => $order
         
         );
@@ -1724,16 +1778,7 @@ function tambah_creative_economies_categories()
 echo 'alert("Berhasil Menambah Kategori Ekonomi Kreatif");'; 
         echo 'document.location.href ="'.base_url().'Admin/creative_economies_categories";';
         echo '</script>';   
-                }
-
-                else{
-                 echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Kategori Ekonomi Kreatif");'; 
-        echo 'document.location.href ="'.base_url().'Admin/creative_economies_categories";';
-        echo '</script>';       
-
-        }
-    }
+            }
 
     function delete_creative_economies_categories($id)
     {
@@ -1754,6 +1799,7 @@ $response_json = curl_exec($ch);
     }
 
     function edit_creative_economies_categories($id){
+        $data['base_url']=$this->API;
         $json = json_decode($this->curl->simple_get($this->API.'creative-economy-categories/'.$id));
          $data['data']=$json;
     
@@ -1770,28 +1816,33 @@ $response_json = curl_exec($ch);
         }
         else{
            
-        $this->load->library('upload');
-        $config['upload_path'] = './images/creative_economies_categories/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-creative-economy-category-icon';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/creative_economies_categories/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/creative_economies_categories/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+  // echo($result);
+
+  $json = json_decode($result);
+  $gambar1=$json->id;
         }
        
 
@@ -1833,6 +1884,7 @@ echo 'alert("Berhasil Megedit Kategori Ekonomi Kreatif");';
 
 ###########creative_economies
     function creative_economies_spesifik(){
+         $data['base_url']=$this->API;
        $url = $this->API.'creative-economies';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1868,6 +1920,10 @@ $response1 = json_decode($response_json1, true);
 
         function creative_economies()
     {
+
+
+
+         $data['base_url']=$this->API;
     $url = $this->API.'creative-economies';
         $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -1885,6 +1941,12 @@ $response_json1 = curl_exec($ch1);
 curl_close($ch1);
 $response1 = json_decode($response_json1, true);
     $data['data_kategori']=$response1['data'];
+
+
+
+    if (empty($this->input->post('data_kategori'))){
+            $data['kategori']='ALL';            
+        }
     $this->load->view('admin/admin_creative_economies',$data);
 
     }
@@ -1906,27 +1968,33 @@ function tambah_creative_economies()
 
     function post_creative_economies()
     {
+        $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-creative-economy-photo';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
+
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+
+  $json = json_decode($result);
         
-        $this->load->library('upload');
-        $config['upload_path'] = './images/creative_economies/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
- 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/creative_economies/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/creative_economies/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-                        $url = $this->API.'creative-economies';
+        $url = $this->API.'creative-economies';
         $ch = curl_init($url);
         $authorization="Authorization: Bearer ".$this->token;
 
@@ -1946,7 +2014,7 @@ function tambah_creative_economies()
         'title' => $title,
         'description' => $description,
         'address' => $address,
-        'photo' => $gambar1,
+        'photo' => $json->id,
         'contact_person' => $contact_person,
         'contact_number' => $contact_number,
         'latitude' => $latitude,
@@ -1965,7 +2033,7 @@ function tambah_creative_economies()
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         // Submit the POST request
         $result = curl_exec($ch);
- 
+        
         // Close cURL session handle
         
         curl_close($ch); 
@@ -1973,15 +2041,7 @@ echo '<script type="text/javascript">';
 echo 'alert("Berhasil Menambah Anggota Ekonomi Kreatif");'; 
         echo 'document.location.href ="'.base_url().'Admin/creative_economies";';
         echo '</script>';   
-                }
-
-                else{
-                 echo '<script type="text/javascript">'; 
-echo 'alert("Gagal Menambah Anggota Ekonomi Kreatif");'; 
-        echo 'document.location.href ="'.base_url().'Admin/creative_economies";';
-        echo '</script>';       
-
-        }
+               
     }
 
     function delete_creative_economies($id)
@@ -2003,6 +2063,8 @@ echo 'alert("Gagal Menambah Anggota Ekonomi Kreatif");';
     }
 
     function edit_creative_economies($id){
+         $data['base_url']=$this->API;
+
         $json = json_decode($this->curl->simple_get($this->API.'creative-economies/'.$id));
         $json1 = json_decode($this->curl->simple_get($this->API.'creative-economy-categories'));
          $data['data']=$json;
@@ -2021,27 +2083,32 @@ echo 'alert("Gagal Menambah Anggota Ekonomi Kreatif");';
         else{
            
         $this->load->library('upload');
-        $config['upload_path'] = './images/creative_economies/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; 
-        $this->upload->initialize($config);
-        
+       $authorization="Authorization: Bearer ".$this->token;
+        $url_gambar= $this->API.'upload-creative-economy-photo';
+        $ch = curl_init($url_gambar);
+        $tmpfile = $_FILES['picture']['tmp_name'];
+$filename = basename($_FILES['picture']['name']);
+ if (function_exists('curl_file_create')) { // php 5.5+
+    $data = array(
+      'x-file' => curl_file_create($tmpfile, $_FILES['picture']['type'], $filename)
+    );
+  } else {
+    $data = array('file_contents'=>'@'.$tmpfile.';type='.$_FILES['picture']['type'].';filename='.$filename);
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+  }
 
-            if ($this->upload->do_upload('picture') ){
-                $gbr = $this->upload->data();
-                //Compress Image
-                $config['image_library']='gd2';
-                $config['source_image']='./images/creative_economies/'.$gbr['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['new_image']= './images/creative_economies/'.$gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
-                $gambar1=$gbr['file_name'];
-                
-               
-            }
+curl_setopt($ch, CURLOPT_POST, 1);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+   'Content-Type: multipart/form-data','accept: application/json',$authorization));
+  // Submit the POST request
+  $result = curl_exec($ch);
+  
+  curl_close($ch); 
+
+  $json = json_decode($result);
+  $gambar1=$json->id;
         }
        $economies_id=$this->input->post('economies_id');
    $title=$this->input->post('title');

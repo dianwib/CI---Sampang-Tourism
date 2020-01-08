@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, hrink-to-fit=yes">
-    <title>Topbuilder Construction Template</title>
-
+    <title><?php echo $data_news['title']?></title>
+   
     <!-- Favicon -->
 <link rel="icon" href="<?php echo base_url().'images/favicon.png'?>" type="image/x-icon" />
     <!-- Bootstrap CSS -->
@@ -79,16 +79,9 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-     <?php
-               for ($h = 0; $h < count($data_slides); $h++){
-                if ($data_slides[$h]['is_visible']==true){
-?>
-<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+ 
+<img class="imageSlides" src=<?php echo $base_url.'upload/news/'.$data_news['picture']?>>
   
-
-<?
-}}
-?>
 
 
   
@@ -111,22 +104,19 @@ Make sure you match the number of these 'circle' span elements to the number of 
 </div>
 
 </section> <!-- blog area -->
-    <section class="blog_all">
+    <section class="blog_all" style="background-color: #59c8ff;">
         <div class="container">
             <div class="row m0 blog_row">
                 <div class="col-sm-8 main_blog" style="width: 100%;">
                     <img src="images/blog/blog_hed-1.jpg" alt="">
                     <div class="col-xs-1 p0">
-                       <div class="blog_date">
-                           <a href="#"></a>
-                       </div>
+                       
                     </div>
 
-<img src=<?php echo base_url().'/images/news/'.$data_news['picture']?>>
-                    <div class="col-xs-11 blog_content">
+                    <div class="col-xs-11 blog_content" style="width: 100%; background-color: #b0e2ff;">
                         <a class="blog_heading" href="#"><?php echo $data_news['title']?></a>
                
-                        <a class="post-date" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $data_news['created_at']?></a>
+                        
                      <p style="text-align: justify;"><?php echo $data_news['content']?></p>   
                     </div>
 
@@ -142,24 +132,27 @@ Make sure you match the number of these 'circle' span elements to the number of 
 
     
     <!-- End Our Latest Blog Area -->
+ <!-- End Our Latest Blog Area -->
 
-    <!-- Our Partners Area -->
+    <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+</style>
     <section class="our_partners_area">
         <div class="container">
             <div class="tittle wow fadeInUp">
-                <h2>Partner Kita</h2>
+                <h2 style="text-transform: capitalize;font-family: 'Lobster',cursive; font-size: 6vh; ">Partner</h2>
                 
             </div>
             <div class="partners">
-                <?php
+                  <?php
                for ($h = 0; $h < count($data_partners); $h++){
 ?>
-<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+<div class="item"><img src=<?php echo $base_url.'upload/partners/'.$data_partners[$h]['picture']?>></div>
   
+
 <?
 }
 ?>
-
             </div>
         </div>
     </section>
@@ -167,42 +160,39 @@ Make sure you match the number of these 'circle' span elements to the number of 
 
     <!-- Footer Area -->
     <footer class="footer_area">
-        <div class="container">
+         <div class="container">
             <div class="footer_row row">
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <img  src="<?php echo base_url().'images/logo.png'?>"?>>
-                     <p>Tentang aplikasi ......</p>
+                <div class="col-md-6 footer_about">
+                    <img src="<?php echo base_url().'images/logo.png'?>"?>
+                     <p>Sampangtourism adalah website promosi pariwisata Kabupaten Sampang yang dikelola oleh Dinas Pemuda Olahraga Kebudayaan dan Pariwisata Kabupaten Sampang Madura.</p>
 
 
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about quick">
+                <!-- <div class="col-md-3 col-sm-6 footer_about quick">
                     <h2>Fitur Lain</h2>
                     <ul class="quick_link">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
+                        <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
                     </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
+                </div> -->
+                <div class="col-md-3  footer_about">
+                    <h2>Mobile APP</h2>
                     <a href="#">
       
                      <img width="70%" height ="70%" src="<?php echo base_url().'images/google_play.png'?>"></a>
          
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about">
+                <div class="col-md-3 footer_about">
                     <h2>CONTACT US</h2>
                     <address>
                         <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@thethemspro.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>+880 123 456 789</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Sector # 10, Road # 05, Plot # 31, Uttara, Dhaka 1230 </span></a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-phone" aria-hidden="true"></i>(0323) 321059</a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-map-marker" aria-hidden="true"></i><span>Jl. Wahid Hasyim No.23, Rw. X, Gn. Sekar, Kec. Sampang, Kabupaten Sampang, Jawa Timur 69216</span></a></li>
                         </ul>
                     </address>
                 </div>
             </div>
         </div>
-        <div class="copyright_area">
-            Copyright 2019 All rights reserved ||
-        </div>
+        
     </footer>
     <!-- End Footer Area -->
 

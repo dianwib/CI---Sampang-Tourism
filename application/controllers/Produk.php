@@ -57,72 +57,25 @@ class Produk extends CI_Controller {
         $response = json_decode($response_json, true);
         $data['data_partners']=$response['data'];
 
+        $data['kategori']=$this->input->post('data_kategori');
 
+        if (empty($this->input->post('data_kategori'))){
+            $data['kategori']='ALL';            
+        }
+
+        
+        
+         $data['base_url']=$this->API;
         $this->load->view('produk/produk_index',$data);
 	}
 
 
-   public function index_()
-    {
-     
-
-        $url = $this->API.'slides';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        $data['data_slides']=$response['data'];
-
-            #######ECONOMIES
-        $url = $this->API.'creative-economies';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        $data['data_creative_economies']=$response['data'];
-
-        #######ECONOMIES-CATEGORIES
-        $url = $this->API.'creative-economy-categories';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        $data['data_creative_economy_categories']=$response['data'];
-
-
-        #######PARTNERS
-        $url = $this->API.'partners';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        $data['data_partners']=$response['data'];
-
    
-        $data['kategori']=$this->input->post('data_kategori');
-
-        if ($this->input->post('data_kategori')=='ALL'){
-             redirect('Produk/index');
-        }
-        else{
-
-
-        $this->load->view('produk/produk_spesifik',$data);
-    }
-}
-
     public function detil($id)
 
 
     {
+         $data['base_url']=$this->API;
         $url = $this->API.'slides';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);

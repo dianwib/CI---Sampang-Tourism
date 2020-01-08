@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, hrink-to-fit=yes">
-    <title>Topbuilder Construction Template</title>
+    <title><?php echo $data_destination_categories['title']?></title>
 
     <!-- Favicon -->
 <link rel="icon" href="<?php echo base_url().'images/favicon.png'?>" type="image/x-icon" />
@@ -30,8 +30,8 @@
 </head>
 <body>
     <!-- Preloader -->
-    <div class="preloader"></div> 
-
+    <!-- <div class="preloader"></div> 
+ -->
   <!-- Top Header_Area -->
   <!-- End Top Header_Area -->
 
@@ -80,16 +80,59 @@
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
  
-  <?php
+ 
+ <?php
                for ($h = 0; $h < count($data_slides); $h++){
                 if ($data_slides[$h]['is_visible']==true){
 ?>
-<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+<img class="imageSlides" src=<?php echo $base_url.'upload/slides/'.$data_slides[$h]['picture']?>>
   
 
 <?
 }}
 ?>
+<style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+.item-1 {
+   /* position: absolute;*/
+  
+  display: block;
+    top: 2em;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  opacity: 0.7;
+  /*background-color: rgba(0,0,0,0.1);
+ */ font-size: 6.5vw;
+  margin-right: auto;
+  margin-left: auto;
+
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+   /* animation-iteration-count: infinite;*/
+}
+
+.item-1{
+    animation-name: anim-1;
+}
+
+
+@keyframes anim-1 {
+ from{
+    transform: translate3d(0,20,0);
+    opacity: 0.1;
+ }
+ to{
+    transform: translate3d(0,0,0);
+    opacity: 0.7;
+ }
+
+</style>
+ <div style="padding-top: 15%; opacity: 0.6;">
+ <p style="text-align: center;margin-left: auto;margin-right: auto; font-family: 'Lobster',cursive;" class="item-1"><?php echo $data_destination_categories['title']?></p>
+     
+ </div>
+ 
 
 
   
@@ -114,60 +157,219 @@ Make sure you match the number of these 'circle' span elements to the number of 
 </section>
  <!-- Our Latest Blog Area -->
     
- 
-<!-- PRODUK -->
-     <section class="latest_blog_area">
-         <div class="tittle wow fadeInUp">
-            <h2>Destinasi <?php echo $data_destination_categories['title']?> </h2>
-            
 
+    <section class="featured_works row" data-stellar-background-ratio="0.3" style="margin-top: 7%; background-color: rgb(239,206,47);" >
+        <div class="tittle wow fadeInUp">
+           <!--  <h2>Event</h2> -->
             <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
         </div>
-            <div class="row latest_blog">
-<div class="container">
-    <div class="row" style="text-align: center;">
-        <div class="col-md-12">
 
-            <?php
- for ($h = 0; $h < count($data_destinations); $h++)
-{   if ($data_destinations[$h]['destination_category_id']==$kategori){
+<style type="text/css">
+    /* centered columns styles */
+.row-centered {
+text-align:center;
+}
+.col-centered {
+display:inline-block;
+float:none;
+/* reset the text-align */
+text-align:left;
+/* inline-block space fix */
+margin-right:-4px;
+}
+</style>
+
+<style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+h1 {
+  text-align: center;
+  font-family: Montserrat,sans-serif;
+  color: #333;
+}
+
+.accordion {
+  width: 100%;
+  max-width: 1080px;
+  height: 250px;
+  overflow: hidden;
+  margin: 0px auto;
+}
+.accordion ul {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin: 0;
+  padding: 0;
+}
+.accordion ul li {
+  display: table-cell;
+  vertical-align: bottom;
+  position: relative;
+  width: 16.666%;
+  height: 250px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all 500ms ease;
+}
+.accordion ul li div {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+.accordion ul li div span {
+  display: block;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: absolute;
+}
+.accordion ul li div a {
+  display: block;
+  height: 250px;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  vertical-align: bottom;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  font-family: Open Sans, sans-serif;
+  transition: all 200ms ease;
+}
+.accordion ul li div a * {
+  opacity: 0;
+  margin: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  position: relative;
+  z-index: 5;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transform: translateX(-20px);
+  transform: translateX(-20px);
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+}
+.accordion ul li div a h2 {
+  font-family: Montserrat,sans-serif;
+  text-overflow: clip;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  top: 160px;
+}
+.accordion ul li div a p {
+  top: 160px;
+  font-size: 13.5px;
+}
+.accordion ul:hover li {
+  width: 10%;
+}
+.accordion ul:hover li:hover {
+  width: 60%;
+}
+.accordion ul:hover li:hover a {
+  background: rgba(0, 0, 0, 0.3);
+}
+.accordion ul:hover li:hover a * {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+
+  .accordion {
+    height: auto;
+  }
+  .accordion ul li, .accordion ul li:hover, .accordion ul:hover li, .accordion ul:hover li:hover {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    -webkit-transition: none;
+    transition: none;
+  }
+  .accordion ul li div, .accordion ul li span, .accordion ul li:hover div, .accordion ul li:hover span, .accordion ul:hover li div, .accordion ul:hover li span, .accordion ul:hover li:hover div, .accordion ul:hover li:hover span {
+    display: table-cell;
+    width: 100%;
+    vertical-align: bottom;
+  }
+}
+.about {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+.about a {
+  color: blue;
+  text-decoration: none;
+}
+.about a:hover {
+  text-decoration: underline;
+}
+</style>
+
+        <div class="featured_gallery row-centered">
+          
+
+<div class="accordion">
+  <ul>
+    
+  <?php
+               for ($h = 0; $h < count($data_destinations); $h++){
+                if ($data_destinations[$h]['destination_category_id']==$kategori){
 ?>
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail" >
-                   <img src="<?php echo base_url().'images/destinations/'.$data_destinations[$h]['photo']?>" class="img-responsive">
-                     <div class="caption">
-                        <div class="row">
-                                <a href="<?php echo base_url(). 'destinasi/detil/'.$data_destinations[$h]['id']?>"><h4  style="padding: 2%"><?php echo $data_destinations[$h]['title']?></h4></a> <hr>
-                    <h4 class="text-center"><span class="label label-info"><?php echo 'Buka Pukul: '.$data_destinations[$h]['opening_hours'].'-'.$data_destinations[$h]['closing_hours']?></span></h4>                       
-                        </div>
-                        <p><i><?php echo $data_destinations[$h]['description']?></i></p>
-                                            <p> </p>
-                    </div>
-                </div>
-                </div>  
+
+    <li>
+      <div>
+        <span>
+          
+              <img style="max-width: none; box-shadow: 4px 2px 20px 1px rgba(15, 76, 117, 0.35) " src=<?php echo $base_url.'/upload/destinations/'.$data_destinations[$h]['photo']?>>
+        </span>
+        <a href="<?php echo base_url(). 'destinasi/detil/'.$data_destinations[$h]['id']?>">
+          <h2 style="text-transform: capitalize;font-family: 'Lobster',cursive;"><?php echo $data_destinations[$h]['title']?></h2>
+          <!-- <p><?php echo $data_destinations[$h]['address']?></p> -->
+        </a>
+      </div>
+    </li>
+
 <? }}
     ?>
-        </div> 
-    </div>
+  </ul>
 </div>
-</div>
+
+           
+        </div>
     </section>
+ 
 
     
     <!-- End Our Latest Blog Area -->
 
-    <!-- Our Partners Area -->
+  
+    <!-- End Our Latest Blog Area -->
+
+    <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+</style>
     <section class="our_partners_area">
         <div class="container">
             <div class="tittle wow fadeInUp">
-                <h2>Partner Kita</h2>
+                <h2 style="text-transform: capitalize;font-family: 'Lobster',cursive; font-size: 6vh; ">Partner</h2>
                 
             </div>
             <div class="partners">
-              <?php
+                  <?php
                for ($h = 0; $h < count($data_partners); $h++){
 ?>
-<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+<div class="item"><img src=<?php echo $base_url.'upload/partners/'.$data_partners[$h]['picture']?>></div>
   
 
 <?
@@ -180,42 +382,39 @@ Make sure you match the number of these 'circle' span elements to the number of 
 
     <!-- Footer Area -->
     <footer class="footer_area">
-        <div class="container">
+         <div class="container">
             <div class="footer_row row">
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <img  src="<?php echo base_url().'images/logo.png'?>"?>>
-                     <p>Tentang aplikasi ......</p>
+                <div class="col-md-6 footer_about">
+                    <img src="<?php echo base_url().'images/logo.png'?>"?>
+                     <p>Sampangtourism adalah website promosi pariwisata Kabupaten Sampang yang dikelola oleh Dinas Pemuda Olahraga Kebudayaan dan Pariwisata Kabupaten Sampang Madura.</p>
 
 
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about quick">
+                <!-- <div class="col-md-3 col-sm-6 footer_about quick">
                     <h2>Fitur Lain</h2>
                     <ul class="quick_link">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
+                        <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
                     </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
+                </div> -->
+                <div class="col-md-3  footer_about">
+                    <h2>Mobile APP</h2>
                     <a href="#">
       
                      <img width="70%" height ="70%" src="<?php echo base_url().'images/google_play.png'?>"></a>
          
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about">
+                <div class="col-md-3 footer_about">
                     <h2>CONTACT US</h2>
                     <address>
                         <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@thethemspro.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>+880 123 456 789</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Sector # 10, Road # 05, Plot # 31, Uttara, Dhaka 1230 </span></a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-phone" aria-hidden="true"></i>(0323) 321059</a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-map-marker" aria-hidden="true"></i><span>Jl. Wahid Hasyim No.23, Rw. X, Gn. Sekar, Kec. Sampang, Kabupaten Sampang, Jawa Timur 69216</span></a></li>
                         </ul>
                     </address>
                 </div>
             </div>
         </div>
-        <div class="copyright_area">
-            Copyright 2019 All rights reserved ||
-        </div>
+        
     </footer>
     <!-- End Footer Area -->
 

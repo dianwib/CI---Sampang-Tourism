@@ -1,5 +1,5 @@
 .featured_works{ 
-    background: url("../images/protfolio_bg.jpg") no-repeat fixed;
+    background: url("?php echo base_url().'images/protfolio_bg.jpg") no-repeat fixed;
     background-position: center;
     text-align: center; 
     position: relative;
@@ -38,7 +38,7 @@
             &:after{
                 content: "";
                 position: absolute;
-                background-color: rgba(248, 184, 29, .70);
+                background-color: rgba(247,229,142 0.8);
                 display: block;
                 top: 0;
                 left: 0;
@@ -57,7 +57,7 @@
                 text-align: center;
                 z-index: 2;
                 h4{
-                    color: #fff;
+                    color: #000;
                     font: 700 14px $roboto;
                     text-transform: uppercase;
                     padding-bottom: 18px;

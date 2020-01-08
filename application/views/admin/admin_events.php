@@ -60,7 +60,7 @@
       <tr>
         <td class="align-middle text-center"><?php echo $no; ?></td>
        
-        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?=base_url().'images/events/'.$data['picture']; ?>" ></a></td>
+        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?php echo $base_url.'upload/events/'.$data['picture']; ?>" ></a></td>
            <td class="align-middle"> <a href="<?php echo '#detil'.$no;?>"><?php echo $data['title']; ?></a></td>
      
         
@@ -89,7 +89,7 @@
                   <div class="col-sm">
                     
                      <div class="form-group" style="text-align: center;">
-                      <img  src="<?=base_url().'images/events/'.$data['picture']; ?>" style="max-width: 100%;
+                      <img  src="<?php echo $base_url.'upload/events/'.$data['picture']; ?>" style="max-width: 100%;
     height: auto;
     width: auto\9; 
     float: center;

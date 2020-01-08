@@ -89,7 +89,7 @@
                    
                     <div class="form-group">
                       <label>Foto</label><br>
-                      <img src="<?=base_url().'images/creative_economies/'.$data->photo; ?>" height="200">
+                      <img src="<?php echo $base_url .'/upload/creative-economies/'.$data->photo; ?>" height="200">
               <input  type="file" class="form-control" type="file" id="picture" name="picture"  accept="image/*">
                 <input type="hidden" name="temp_picture" value="<?php echo $data->photo ?>">
                     </div>

@@ -46,7 +46,7 @@
                    
                     <div class="form-group">
                       <label>Logo Partner</label><br>
-              <img src="<?=base_url().'images/partners/'.$data->picture; ?>" height="200">
+              <img src="<?php echo $base_url.'upload/partners/'.$data->picture; ?>" height="200">
               <input class="form-control" type="file" id="picture" name="picture"  accept="image/*">
                 <input type="hidden" name="temp_picture" value="<?php echo $data->picture ?>">
                     </div>

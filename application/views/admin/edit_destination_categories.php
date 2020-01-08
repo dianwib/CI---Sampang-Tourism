@@ -61,7 +61,7 @@
                     <div class="form-group">
                       <label>Ikon Kategori</label>
                       <input type="file" name="img[]" class="file-upload-default"><br>
-                      <img src="<?=base_url().'images/destination_categories/'.$data->icon; ?>" height="200">
+                      <img src="<?php echo $base_url.'upload/destination-categories/'.$data->icon; ?>" height="200">
               <input class="form-control" type="file" id="picture" name="picture"  accept="image/*">
                 <input type="hidden" class="form-control" name="temp_picture" value="<?php echo $data->icon ?>">
               </div>

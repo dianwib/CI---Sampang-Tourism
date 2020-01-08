@@ -59,7 +59,7 @@
       <tr>
         <td class="align-middle text-center"><?php echo $no; ?></td>
        
-        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?=base_url().'images/photos_gallery/'.$data['photo']; ?>" ></a></td>
+        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?php echo $base_url.'upload/galleries/'.$data['photo']; ?>" ></a></td>
          
      
         
@@ -83,7 +83,7 @@
       <div class="card">
                 <div class="card-body">
                      <div class="form-group" style="text-align: center;">
-                      <img  src="<?=base_url().'images/photos_gallery/'.$data['photo']; ?>" style="max-width: 100%;
+                      <img  src="<?php echo $base_url.'upload/galleries/'.$data['photo']; ?>" style="max-width: 100%;
     height: auto;
     width: auto\9; 
     float: center;

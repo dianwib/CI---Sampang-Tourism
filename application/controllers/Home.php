@@ -11,6 +11,8 @@ class Home extends CI_Controller {
         $this->load->library('curl');
 
         $this->load->helper(array('form', 'url'));
+
+
     }
 
     
@@ -70,6 +72,15 @@ class Home extends CI_Controller {
 		$response = json_decode($response_json, true);
     	$data['data_destination_categories']=$response['data'];
 
+#######destinations
+        $url = $this->API.'destinations';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        $data['data_destinations']=$response['data'];
 
 #######PARTNERS
     	$url = $this->API.'partners';
@@ -82,7 +93,7 @@ class Home extends CI_Controller {
     	$data['data_partners']=$response['data'];
 
 
-    	
+    	 $data['base_url']=$this->API;
 		$this->load->view('home/index',$data);
 		
 	}

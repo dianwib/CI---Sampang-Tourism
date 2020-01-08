@@ -45,7 +45,7 @@
                    
                     <div class="form-group">
                       <label>Foto Berita</label><br>
-              <img src="<?=base_url().'images/news/'.$data->picture; ?>" height="200">
+              <img src="<?php echo $base_url.'upload/news/'.$data->picture; ?>" height="200">
               <input class="form-control" type="file" id="picture" name="picture"  accept="image/*">
                 <input type="hidden" name="temp_picture" value="<?php echo $data->picture ?>">
                     </div>

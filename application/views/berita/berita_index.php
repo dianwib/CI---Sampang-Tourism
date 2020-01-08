@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, hrink-to-fit=yes">
 
-    <title>Topbuilder Construction Template</title>
+    <title>Berita</title>
 
   <!-- Favicon -->
 <link rel="icon" href="<?php echo base_url().'images/favicon.png'?>" type="image/x-icon" />
@@ -80,18 +80,58 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-   <?php
+   
+ <?php
                for ($h = 0; $h < count($data_slides); $h++){
                 if ($data_slides[$h]['is_visible']==true){
 ?>
-<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+<img class="imageSlides" src=<?php echo $base_url.'upload/slides/'.$data_slides[$h]['picture']?>>
   
 
 <?
 }}
 ?>
+<style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+.item-1 {
+   /* position: absolute;*/
+  
+  display: block;
+    top: 2em;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  opacity: 0.7;
+  /*background-color: rgba(0,0,0,0.1);
+ */ font-size: 6.5vw;
+  margin-right: auto;
+  margin-left: auto;
+
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+   /* animation-iteration-count: infinite;*/
+}
+
+.item-1{
+    animation-name: anim-1;
+}
 
 
+@keyframes anim-1 {
+ from{
+    transform: translate3d(0,20,0);
+    opacity: 0.1;
+ }
+ to{
+    transform: translate3d(0,0,0);
+    opacity: 0.7;
+ }
+
+</style>
+ <div style="padding-top: 15%; opacity: 0.6;">
+ <p style="text-align: center;margin-left: auto;margin-right: auto; font-family: 'Lobster',cursive;" class="item-1">Berita Terbaru</p>
+     
+ </div>
   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
@@ -112,15 +152,26 @@ Make sure you match the number of these 'circle' span elements to the number of 
 </div>
 
 </section>
+
+<style type="text/css">
+    .card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+</style>
     <!-- Our Latest Blog Area -->
     <section class="latest_blog_area">
  <div class="tittle wow fadeInUp">
-                <h2>Berita Terbaru</h2>
+               <!--  <h2>Berita Terbaru</h2> -->
              <!--    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
              --></div>
             <div class="row latest_blog">
            <div class="container">
-        <div class="row" style="text-align: center;">
+        <div class="row" style="background-color: #98d3f1;padding-top: 4%;">
             <div class="col-md-12">
                
 
@@ -132,16 +183,18 @@ Make sure you match the number of these 'circle' span elements to the number of 
  ?>
             <div class="col-sm-6 col-md-6">
 		
-        	<div class="post-slide11">
+        	<div class="post-slide11 card-1">
+              <a href="<?php echo base_url().'berita/detil/'.$data_news[$h]['id'];?>">
              <div class="post-img">
              <span class="over-layer"></span>
-             <img src="<?php echo base_url().'images/news/'.$data_news[$h]['picture']?>" class="img-responsive">
+             <img style="box-shadow: 4px 2px 20px 1px rgba(15, 76, 117, 0.35);" src="<?php echo $base_url.'upload/news/'.$data_news[$h]['picture']?>" class="img-responsive">
+             
               <h3 class="post-title">
-               <a href="<?php echo base_url().'berita/detil/'.$data_news[$h]['id'];?>"><?php echo $data_news[$h]['title']?></a>
+              <?php echo $data_news[$h]['title']?>
                </h3>
                 <span class="post-date"><i class="fa fa-calendar"></i> <?php echo substr( $data_news[$h]['created_at'],0,10);?></span>
     
-                </div>
+                </div></a>
             </div></div>
        
 <?} 
@@ -153,89 +206,6 @@ Make sure you match the number of these 'circle' span elements to the number of 
    </div> 
         </section>
     
-    <!-- Our Partners Area -->
-    <section class="our_partners_area">
-        <div class="container">
-            <div class="tittle wow fadeInUp">
-                <h2>Partner Kita</h2>
-                
-            </div>
-                     <div class="partners">
-                <?php
-               for ($h = 0; $h < count($data_partners); $h++){
-?>
-<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
-  
-<?
-}
-?>
-            </div>
-
-        </div>
-    </section>
-    <!-- End Our Partners Area -->
-
-    <!-- Footer Area -->
-    <footer class="footer_area">
-        <div class="container">
-            <div class="footer_row row">
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <img src="<?php echo base_url().'images/logo.png'?>">
-                     <p>Tentang aplikasi ......</p>
 
 
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about quick">
-                    <h2>Fitur Lain</h2>
-                    <ul class="quick_link">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
-                    <a href="#">
-      
-                     <img width="70%" height ="70%" src="<?php echo base_url().'images/google_play.png'?>"></a>
-         
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>CONTACT US</h2>
-                    <address>
-                        <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@thethemspro.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>+880 123 456 789</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Sector # 10, Road # 05, Plot # 31, Uttara, Dhaka 1230 </span></a></li>
-                        </ul>
-                    </address>
-                </div>
-            </div>
-        </div>
-        <div class="copyright_area">
-            Copyright 2019 All rights reserved ||
-        </div>
-    </footer>
-    <!-- End Footer Area -->
-
-    <!-- jQuery JS -->
-    <script src="<?php echo base_url().'js/jquery-1.12.0.min.js'?>"></script>
-    <!-- Bootstrap JS -->
-    <script src="<?php echo base_url().'js/bootstrap.min.js'?>"></script>
-    <!-- Animate JS -->
-    <script src="<?php echo base_url().'vendors/animate/wow.min.js'?>"></script>
-    <!-- Camera Slider -->
-    <script src="<?php echo base_url().'vendors/camera-slider/jquery.easing.1.3.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/camera-slider/camera.min.js'?>"></script>
-    <!-- Isotope JS -->
-    <script src="<?php echo base_url().'vendors/isotope/imagesloaded.pkgd.min.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/isotope/isotope.pkgd.min.js'?>"></script>
-    <!-- Progress JS -->
-    <script src="<?php echo base_url().'vendors/Counter-Up/jquery.counterup.min.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/Counter-Up/waypoints.min.js'?>"></script>
-    <!-- Owlcarousel JS -->
-    <script src="<?php echo base_url().'vendors/owl_carousel/owl.carousel.min.js'?>"></script>
-    <!-- Stellar JS -->
-    <script src="<?php echo base_url().'vendors/stellar/jquery.stellar.js'?>"></script>
-    <!-- Theme JS -->
-    <script src="<?php echo base_url().'js/theme.js'?>"></script>
-</body>
-</html>
+   <?php $this->load->view('home/menubawah_ser');?>

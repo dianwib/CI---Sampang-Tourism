@@ -59,7 +59,7 @@
       <tr>
         <td class="align-middle text-center"><?php echo $no; ?></td>
        
-        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?=base_url().'images/slides/'.$data['picture']; ?>" ></a></td>
+        <td class="align-middle"><a href="<?php echo '#detil'.$no;?>"><img src="<?php echo 'https://sampang-tourism.herokuapp.com/upload/slides/'.$data['picture']; ?>" ></a></td>
          
      
         
@@ -94,7 +94,7 @@ else{
       <div class="card">
                 <div class="card-body">
                      <div class="form-group" style="text-align: center;">
-                      <img  src="<?=base_url().'images/slides/'.$data['picture']; ?>" style="max-width: 100%;
+                      <img  src="<?php echo 'https://sampang-tourism.herokuapp.com/upload/slides/'.$data['picture']; ?>" style="max-width: 100%;
     height: auto;
     width: auto\9; 
     float: center;

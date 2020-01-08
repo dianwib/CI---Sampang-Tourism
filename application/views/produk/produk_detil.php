@@ -22,20 +22,22 @@
     <!--Theme Styles CSS-->
   <link rel="stylesheet" href="<?php echo base_url().'css/style.css'?>" >
 
+   
+
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js'?>"></script>
-    <script src="js/respond.min.js'?>"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
     <!-- Preloader -->
-    <div class="preloader"></div> 
+    <!-- <div class="preloader"></div>
+ -->
+    <!-- Top Header_Area -->
+    <!-- End Top Header_Area -->
 
-  <!-- Top Header_Area -->
-  <!-- End Top Header_Area -->
-
-  <!-- Header_Area -->
+    <!-- Header_Area -->
     <nav class="navbar navbar-default header_aera" id="main_navbar">
         <div class="container">
             <!-- searchForm -->
@@ -66,38 +68,76 @@
             <div class="col-md-10 p0">
                 <div class="collapse navbar-collapse" id="min_navbar">
                          <?php $this->load->view('home/menu');?>
-    
+      
                 </div><!-- /.navbar-collapse -->
             </div>
         </div><!-- /.container -->
     </nav>
-  <!-- End Header_Area -->
+    <!-- End Header_Area -->
     <!-- Slider area -->
-       <section class="slider_area row m0">
-       
+    <section class="slider_area row m0">
+  
+
+
 <div class="slideshowContainer">
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
+  
+
+
  
-  <?php
-               for ($h = 0; $h < count($data_slides); $h++){
-?>
-<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+<img class="imageSlides" src=<?php echo $base_url.'/upload/creative-economies/'.$data_creative_economies['photo']?>>
   
 
-<?
+<style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+.item-1 {
+   /* position: absolute;*/
+  
+  display: block;
+    top: 2em;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  opacity: 0.7;
+  /*background-color: rgba(0,0,0,0.1);
+ */ font-size: 6.5vw;
+  margin-right: auto;
+  margin-left: auto;
+
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+   /* animation-iteration-count: infinite;*/
 }
-?>
 
-  
+.item-1{
+    animation-name: anim-1;
+}
+
+
+@keyframes anim-1 {
+ from{
+    transform: translate3d(0,20,0);
+    opacity: 0.1;
+ }
+ to{
+    transform: translate3d(0,0,0);
+    opacity: 0.7;
+ }
+
+</style>
+ <div style="padding-top: 15%; opacity: 0.6;">
+ <p style="text-transform: capitalize;text-align: center;margin-left: auto;margin-right: auto; font-family: 'Lobster',cursive;" class="item-1"><?php echo $data_creative_economies['title']?></p>
+ </div>
+   
 <!-- I would recommend to replace these 'span' elements with 'img' files
 for each the left and right arrow that fits your project, and size accordingly.
 I've shown 'span' elements because I didn't want to upload files. -->
   <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
   <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
   
-  <div class="slideshowCircles">
+  <div class="slideshowCircles" style="visibility: hidden;">
 <!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
 Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
     <span class="circle dot"></span>
@@ -111,61 +151,48 @@ Make sure you match the number of these 'circle' span elements to the number of 
 
 </section>
  <!-- Our Latest Blog Area -->
-    
- 
-<!-- PRODUK -->
-     <section class="latest_blog_area">
-         <div class="tittle wow fadeInUp">
-            <h2>Produk Anggota </h2>
-            <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-        </div>
-            <div class="row latest_blog">
-<div class="container">
-    <div class="row" style="text-align: center;">
-        <div class="col-md-12">
-
-            <div class="col-sm-12 col-md-12">
-                <div class="thumbnail" >
-                   <img src="<?php echo base_url().'images/creative_economies/'.$data_creative_economies['photo']?>" class="img-responsive">
-                     <div class="caption">
-                        <div class="row">
-                                <a href="<?php echo 'produk/detil/'.$data_creative_economies['id']?>"><h4  style="padding: 2%"><?php echo $data_creative_economies['title']?></h4></a> <hr>
-                    <h4 class="text-center"><span class="label label-info" style="white-space: normal;"><?php echo $data_creative_economies['contact_person'].'-'.$data_creative_economies['contact_number']?></span></h4>                         
-                                       
-                        </div><br>
-                        <p><i><?php echo $data_creative_economies['description']?></i></p>
-                        <br>
-                        <h4 class="text-center"><span class="label label-info" style="white-space: normal;"><?php echo 'Alamat : ' .$data_creative_economies['address']?></span></h4>     
-                                            <p> </p>
-                                            <br><br><br>
-
-<head><?php echo $map['js']; ?></head>
-<body ><?php echo $map['html']; ?></body>
+     <section class="about_us_area row" style="background-color: rgb(239, 206, 47);" >
+        <div class="container">
+            <!-- <div class="tittle wow fadeInUp">
+                <h2>ABOUT US</h2>
+                <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
+            </div> -->
+            <div class="row about_row">
+                <div class="who_we_area col-md-7 col-sm-6" style="overflow-wrap: break-word;background:#fffca3;padding: 4%;">
+                    <div class="subtittle" >
+                        <h2  style="text-transform: capitalize;" ><?php echo $data_creative_economies['title']?></h2>
                     </div>
+                    <p><?php echo $data_creative_economies['description']?></p>
+                     <a href="#" class="button_all"><i  class="fa fa-child" aria-hidden="true"></i><?php echo ' '. $data_creative_economies['contact_person']?></a>
+                    <a href="#" class="button_all"><i  class="fa fa-phone" aria-hidden="true"></i><?php echo ' '. $data_creative_economies['contact_number']?></a><br>
+                    <a href="#" class="button_all"><i  class="fa fa-map-marker" aria-hidden="true"></i><?php echo ' '. $data_creative_economies['address']?></a>
                 </div>
-                </div>  
-        </div> 
-    </div>
-</div>
-</div>
+                <div class="col-md-5 col-sm-6 about_client" style="padding: 0px;">
+                    <head><?php echo $map['js']; ?></head>
+<body ><?php echo $map['html']; ?></body>
+                </div>
+            </div>
+        </div>
     </section>
+ 
 
     
     <!-- End Our Latest Blog Area -->
 
-    <!-- Our Partners Area -->
+    <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+</style>
     <section class="our_partners_area">
         <div class="container">
             <div class="tittle wow fadeInUp">
-                <h2>Partner Kita</h2>
+                <h2 style="text-transform: capitalize;font-family: 'Lobster',cursive; font-size: 6vh; ">Partner</h2>
                 
             </div>
             <div class="partners">
-                
-        <?php
-for ($h = 0; $h < count($data_partners); $h++){
+                  <?php
+               for ($h = 0; $h < count($data_partners); $h++){
 ?>
-<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
+<div class="item"><img src=<?php echo $base_url.'upload/partners/'.$data_partners[$h]['picture']?>></div>
   
 
 <?
@@ -178,42 +205,39 @@ for ($h = 0; $h < count($data_partners); $h++){
 
     <!-- Footer Area -->
     <footer class="footer_area">
-        <div class="container">
+         <div class="container">
             <div class="footer_row row">
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <img  src="<?php echo base_url().'images/logo.png'?>"?>>
-                     <p>Tentang aplikasi ......</p>
+                <div class="col-md-6 footer_about">
+                    <img src="<?php echo base_url().'images/logo.png'?>"?>
+                     <p>Sampangtourism adalah website promosi pariwisata Kabupaten Sampang yang dikelola oleh Dinas Pemuda Olahraga Kebudayaan dan Pariwisata Kabupaten Sampang Madura.</p>
 
 
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about quick">
+                <!-- <div class="col-md-3 col-sm-6 footer_about quick">
                     <h2>Fitur Lain</h2>
                     <ul class="quick_link">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
+                        <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
                     </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
+                </div> -->
+                <div class="col-md-3  footer_about">
+                    <h2>Mobile APP</h2>
                     <a href="#">
       
                      <img width="70%" height ="70%" src="<?php echo base_url().'images/google_play.png'?>"></a>
          
                 </div>
-                <div class="col-md-3 col-sm-6 footer_about">
+                <div class="col-md-3 footer_about">
                     <h2>CONTACT US</h2>
                     <address>
                         <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@thethemspro.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>+880 123 456 789</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Sector # 10, Road # 05, Plot # 31, Uttara, Dhaka 1230 </span></a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-phone" aria-hidden="true"></i>(0323) 321059</a></li>
+                            <li><a style="font: 400 14px/26px 'Oswald', sans-serif;" href="#"><i style="color: #fff;" class="fa fa-map-marker" aria-hidden="true"></i><span>Jl. Wahid Hasyim No.23, Rw. X, Gn. Sekar, Kec. Sampang, Kabupaten Sampang, Jawa Timur 69216</span></a></li>
                         </ul>
                     </address>
                 </div>
             </div>
         </div>
-        <div class="copyright_area">
-            Copyright 2019 All rights reserved ||
-        </div>
+        
     </footer>
     <!-- End Footer Area -->
 

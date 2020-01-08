@@ -16,6 +16,7 @@ class Event extends CI_Controller {
     
    public function index()
     {
+        $data['base_url']=$this->API;
         $url = $this->API.'slides';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -58,6 +59,7 @@ class Event extends CI_Controller {
 
 
     {
+        $data['base_url']=$this->API;
         $url = $this->API.'slides';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);

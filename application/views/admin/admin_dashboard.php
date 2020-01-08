@@ -195,7 +195,7 @@ transform: scale(1.08);
   <li>
                         <div class="form-check form-check-flat">
                           <label class="form-check-label">
-                            <img style="object-fit: cover;width: 100px;height: 100px;" src=<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>>
+                            <img style="object-fit: cover;width: 100px;height: 100px;" src=<?php echo $base_url.'upload/galleries/'.$data_photos_gallery[$h]['photo']?>>
                           </label>
                         </div>
                       </li>
@@ -225,7 +225,7 @@ transform: scale(1.08);
   <li>
                         <div class="form-check form-check-flat">
                           <label class="form-check-label">
-                            <img style="object-fit: cover;width: 100px;height: 100px;" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+                            <img style="object-fit: cover;width: 100px;height: 100px;" src=<?php echo $base_url.'upload/slides/'.$data_slides[$h]['picture']?>>
                           </label>
                         </div>
                       </li>
@@ -244,7 +244,7 @@ transform: scale(1.08);
 
 
             <div class="col-md-4 grid-margin stretch-card">
-              <div class="card border-bottom-0"><a class="dashboard" href="<?php echo base_url().'admin/destinations'?>">
+              <div class="card border-bottom-0"><a class="dashboard" href="<?php echo base_url().'admin/creative_economies'?>">
                 <div class="card-body pb-0">
                   <p class="card-title">EKONOMI KREATIF</p>
                   <!-- <p class="text-muted font-weight-light">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review</p> -->

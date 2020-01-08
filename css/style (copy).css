@@ -514,7 +514,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
   content: "";
   position: absolute;
   top: -20px;
-  background: url("../vendors/camera-slider/images/prev.png") no-repeat;
+  background: url("?php echo base_url().'vendors/camera-slider/images/prev.png") no-repeat;
   left: 382px;
   height: 50px;
   width: 50px;
@@ -523,7 +523,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
   content: "";
   position: absolute !important;
   top: 0;
-  background: url("../vendors/camera-slider/images/next.png") no-repeat;
+  background: url("?php echo base_url().'vendors/camera-slider/images/next.png") no-repeat;
   right: 382px;
   height: 50px;
   width: 50px;
@@ -556,7 +556,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 /* End slider_area_tow */
 /* Banner Area */
 .banner_area {
-  background: url("../images/banner-bg.jpg") no-repeat fixed;
+  background: url("?php echo base_url().'images/banner-bg.jpg") no-repeat fixed;
   background-position: center;
   text-align: center;
   position: relative;
@@ -1046,7 +1046,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 
 /*--------------------------------------------------*/
 .our_achievments_area {
-  background: url("../images/achievments_bg.jpg") no-repeat fixed;
+  background: url("?php echo base_url().'images/achievments_bg.jpg") no-repeat fixed;
   background-position: center;
   text-align: center;
   position: relative;
@@ -1209,7 +1209,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 /* End Our Partners Area */
 /*--------------------------------------------------*/
 .featured_works {
-  background: url("../images/protfolio_bg.jpg") no-repeat fixed;
+  background: url("?php echo base_url().'images/protfolio_bg.jpg") no-repeat fixed;
   background-position: center;
   text-align: center;
   position: relative;
@@ -2045,7 +2045,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 /* End All contact Info Css */
 /*--------------------------------------------------*/
 .footer_area {
-  background: url("../images/footer.jpg") no-repeat;
+  background: url("?php echo base_url().'images/footer.jpg") no-repeat;
   position: relative;
   background-size: cover;
   background-position: center;

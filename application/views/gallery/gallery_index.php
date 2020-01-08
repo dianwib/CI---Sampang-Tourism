@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, hrink-to-fit=yes">
-    <title>Topbuilder Construction Template</title>
+    <title>Galeri</title>
 
     <!-- Favicon -->
 <link rel="icon" href="<?php echo base_url().'images/favicon.png'?>" type="image/x-icon" />
@@ -79,16 +79,57 @@
   
 <!-- Replace the image 'src' with the images in your project.
 Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-   <?php
+  <?php
                for ($h = 0; $h < count($data_slides); $h++){
                 if ($data_slides[$h]['is_visible']==true){
 ?>
-<img class="imageSlides" src=<?php echo base_url().'images/slides/'.$data_slides[$h]['picture']?>>
+<img class="imageSlides" src=<?php echo $base_url.'upload/slides/'.$data_slides[$h]['picture']?>>
   
 
 <?
 }}
 ?>
+<style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lobster&display=swap);
+.item-1 {
+   /* position: absolute;*/
+  
+  display: block;
+    top: 2em;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  opacity: 0.7;
+  /*background-color: rgba(0,0,0,0.1);
+ */ font-size: 6.5vw;
+  margin-right: auto;
+  margin-left: auto;
+
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+   /* animation-iteration-count: infinite;*/
+}
+
+.item-1{
+    animation-name: anim-1;
+}
+
+
+@keyframes anim-1 {
+ from{
+    transform: translate3d(0,20,0);
+    opacity: 0.1;
+ }
+ to{
+    transform: translate3d(0,0,0);
+    opacity: 0.7;
+ }
+
+</style>
+ <div style="padding-top: 15%; opacity: 0.6;">
+ <p style="text-align: center;margin-left: auto;margin-right: auto; font-family: 'Lobster',cursive;" class="item-1">Galeri</p>
+     
+ </div>
 
 
   
@@ -113,16 +154,19 @@ Make sure you match the number of these 'circle' span elements to the number of 
 </section>
  <!-- Our Latest Blog Area -->
     
-    
- <section class="featured_works row" data-stellar-background-ratio="0.3">
+    <section class="featured_works row" data-stellar-background-ratio="0.3" style="margin-top: 7%; background-color: rgb(239,206,47);" >
         <div class="tittle wow fadeInUp">
-            <h2>Gallery</h2>
+           <!--  <h2>Event</h2> -->
             <!-- <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4> -->
-         <form class="form-signin" action="<?php echo base_url().'gallery/index_/'?>" method="post"  enctype="multipart/form-data">
-      
-        <select name="data_kategori" onchange="this.form.submit()">
+            <form style="margin-top: 5%"; class="form-signin" action="<?php echo base_url().'gallery'?>" method="post"  enctype="multipart/form-data" >
+         <div class ="select" style="margin-left: auto;margin-right: auto;">
+        <select  name="data_kategori" onchange="this.form.submit()">
 
 
+
+
+<option value="" selected disabled>Pilih Kategori
+</option>
 <option value="ALL">Semua
 </option>
 
@@ -140,6 +184,59 @@ for ($h = 0; $h < count($data_galleries); $h++){
 </form>
         </div>
 
+        <style type="text/css">
+    select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #0f4c75;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 13em;
+  height: 3em;
+  line-height: 3;
+  background: #0f4c75;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  flex: 1;
+   padding: 2px 2.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #033a5f;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #fff;
+}
+
+</style>
 <style type="text/css">
     /* centered columns styles */
 .row-centered {
@@ -156,112 +253,39 @@ margin-right:-4px;
 </style>
 
         <div class="featured_gallery row-centered">
-            
-    <?php
+            <?php
+            if ($kategori=='ALL'){
                for ($h = 0; $h < count($data_photos_gallery); $h++){
 ?>
-<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered">
-                <a href=<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>> <img style="object-fit: cover;width: 300px;height: 337px;" src=<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>></a>
-                <div class="gallery_hover"><!-- 
+<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered" style="background:#f7d637;">
+                <img style="object-fit: cover;width: 340px;height: 300px;" src="<?php echo $base_url.'upload/galleries/'.$data_photos_gallery[$h]['photo']?>">
+                 <div class="gallery_hover"><!-- 
                     <h4><?php echo $data_events[$h]['title']?></h4> -->
-                    <a href="<?php echo base_url().'images/photos_gallery/'.$data_photos_gallery[$h]['photo']?>">Lihat</a>
+                    <a href="<?php echo $base_url.'upload/galleries/'.$data_photos_gallery[$h]['photo']?>">Lihat</a>
                 </div>
    
         </div>  
-<? }
+<? }}
+else{
+               for ($h = 0; $h < count($data_photos_gallery); $h++){
+                if ($data_photos_gallery[$h]['gallery_id']==$kategori){
+?>
+<div class="col-md-3 col-sm-3 col-xs-6 gallery_iner p0 col-centered" style="background:#f7d637;">
+                <img style="object-fit: cover;width: 340px;height: 300px;" src="<?php echo $base_url.'upload/galleries/'.$data_photos_gallery[$h]['photo']?>">
+                 <div class="gallery_hover"><!-- 
+                    <h4><?php echo $data_events[$h]['title']?></h4> -->
+                    <a href="<?php echo $base_url.'upload/galleries/'.$data_photos_gallery[$h]['photo']?>">Lihat</a>
+                </div>
+   
+        </div>  
+<? }}}
     ?>
            
         </div>
     </section>
+<!--  -->
+
        <!-- End Our Featured Works Area -->
 
     
-    <!-- End Our Latest Blog Area -->
-
-    <!-- Our Partners Area -->
-    <section class="our_partners_area">
-        <div class="container">
-            <div class="tittle wow fadeInUp">
-                <h2>Partner Kita</h2>
-                
-            </div>
-            <div class="partners">
-                                  <?php
-               for ($h = 0; $h < count($data_partners); $h++){
-?>
-<div class="item"><img src=<?php echo base_url().'images/partners/'.$data_partners[$h]['picture']?>></div>
-  
-
-<?
-}
-?>
-
-            </div>
-        </div>
-    </section>
-    <!-- End Our Partners Area -->
-
-    <!-- Footer Area -->
-    <footer class="footer_area">
-        <div class="container">
-            <div class="footer_row row">
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <img  src="<?php echo base_url().'images/logo.png'?>"?>>
-                     <p>Tentang aplikasi ......</p>
-
-
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about quick">
-                    <h2>Fitur Lain</h2>
-                    <ul class="quick_link">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i>Ebook</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>Mobile App</h2>
-                    <a href="#">
-      
-                     <img width="70%" height ="70%" src="<?php echo base_url().'images/google_play.png'?>"></a>
-         
-                </div>
-                <div class="col-md-3 col-sm-6 footer_about">
-                    <h2>CONTACT US</h2>
-                    <address>
-                        <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@thethemspro.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>+880 123 456 789</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Sector # 10, Road # 05, Plot # 31, Uttara, Dhaka 1230 </span></a></li>
-                        </ul>
-                    </address>
-                </div>
-            </div>
-        </div>
-        <div class="copyright_area">
-            Copyright 2019 All rights reserved ||
-        </div>
-    </footer>
-    <!-- End Footer Area -->
-
-    <!-- jQuery JS -->
-    <script src="<?php echo base_url().'js/jquery-1.12.0.min.js'?>"></script>
-    <!-- Bootstrap JS -->
-    <script src="<?php echo base_url().'js/bootstrap.min.js'?>"></script>
-    <!-- Animate JS -->
-    <script src="<?php echo base_url().'vendors/animate/wow.min.js'?>"></script>
-    <!-- Camera Slider -->
-    <script src="<?php echo base_url().'vendors/camera-slider/jquery.easing.1.3.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/camera-slider/camera.min.js'?>"></script>
-    <!-- Isotope JS -->
-    <script src="<?php echo base_url().'vendors/isotope/imagesloaded.pkgd.min.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/isotope/isotope.pkgd.min.js'?>"></script>
-    <!-- Progress JS -->
-    <script src="<?php echo base_url().'vendors/Counter-Up/jquery.counterup.min.js'?>"></script>
-    <script src="<?php echo base_url().'vendors/Counter-Up/waypoints.min.js'?>"></script>
-    <!-- Owlcarousel JS -->
-    <script src="<?php echo base_url().'vendors/owl_carousel/owl.carousel.min.js'?>"></script>
-    <!-- Stellar JS -->
-    <script src="<?php echo base_url().'vendors/stellar/jquery.stellar.js'?>"></script>
-    <!-- Theme JS -->
-    <script src="<?php echo base_url().'js/theme.js'?>"></script>
-</body>
-</html>
+  <?php $this->load->view('home/menubawah_ser');?>
