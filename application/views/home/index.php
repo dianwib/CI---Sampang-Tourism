@@ -39,33 +39,33 @@ margin-right:-4px;
  -->                <!-- <img style="object-fit: cover;
 
   width: 100px;
-  height: 100px;" src=<?php echo base_url().'images/menuicon.png'?>> -->
+  height: 100px;" src=<?php echo base_url().'images/profile.png'?>> -->
   
+  <div class="jenis-container">
+    <div class="jenis hover"><a href="<?php echo base_url().'profile' ?>"><img style="
+
+  width: 100%;
+  height: 100%;" src=<?php echo base_url().'images/profil.png'?>></a></div>
+  </div>
+
   <div class="jenis-container">
     <div class="jenis hover"><a href="<?php echo base_url().'event' ?>"><img style="
 
   width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
-  </div>
-
-  <div class="jenis-container">
-    <div class="jenis hover"><a href="<?php echo base_url().'berita' ?>"><img style="
-
-  width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
+  height: 100%;" src=<?php echo base_url().'images/event.png'?>></a></div>
   </div>
   <div class="jenis-container">
     <div class="jenis hover"><a href="<?php echo base_url().'berita' ?>"><img style="
 
   width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
+  height: 100%;" src=<?php echo base_url().'images/berita.png'?>></a></div>
   </div>
 
   <div class="jenis-container">
-    <div class="jenis hover"><a href="<?php echo base_url().'produk' ?>"><img style="
+    <div class="jenis hover"><a href="#wisata"><img style="
 
   width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
+  height: 100%;" src=<?php echo base_url().'images/destinasi.png'?>></a></div>
   </div>
   
 
@@ -73,27 +73,27 @@ margin-right:-4px;
     <div class="jenis hover"><a href="#partners"><img style="
 
   width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
-  </div>
-
-  <div class="jenis-container">
-    <div class="jenis hover"><a href="<?php echo base_url().'berita' ?>"><img style="
-
-  width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
-  </div>
-  <div class="jenis-container">
-    <div class="jenis hover"><a href="<?php echo base_url().'berita' ?>"><img style="
-
-  width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
+  height: 100%;" src=<?php echo base_url().'images/partner.png'?>></a></div>
   </div>
 
   <div class="jenis-container">
     <div class="jenis hover"><a href="<?php echo base_url().'produk' ?>"><img style="
 
   width: 100%;
-  height: 100%;" src=<?php echo base_url().'images/menuicon.png'?>></a></div>
+  height: 100%;" src=<?php echo base_url().'images/produk.png'?>></a></div>
+  </div>
+  <div class="jenis-container">
+    <div class="jenis hover"><a href="<?php echo base_url().'gallery' ?>"><img style="
+
+  width: 100%;
+  height: 100%;" src=<?php echo base_url().'images/galeri.png'?>></a></div>
+  </div>
+
+  <div class="jenis-container">
+    <div class="jenis hover"><a href="#"><img style="
+
+  width: 100%;
+  height: 100%;" src=<?php echo base_url().'images/data_publik.png'?>></a></div>
   </div>
 
 <!--             </div>
@@ -174,7 +174,7 @@ margin-right:-4px;
 }
 </style>
 
-        <div class="featured_gallery row-centered">
+        <div class="featured_gallery row-centered" id="wisata">
             
            <?php include 'wisata_home.php'; ?>
    
