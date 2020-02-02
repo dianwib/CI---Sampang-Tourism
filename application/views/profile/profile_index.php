@@ -169,7 +169,7 @@ Make sure you match the number of these 'circle' span elements to the number of 
                <!--  <h2>Berita Terbaru</h2> -->
              <!--    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
              --></div>
-            <div class="row latest_blog">
+            <div class="row latest_blog"  style="margin-right: 0px;">
            <div class="container">
         <div class="row" style="background-color: #98d3f1;padding-top: 4%;">
             <div class="col-md-12">

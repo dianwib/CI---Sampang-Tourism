@@ -4,12 +4,12 @@
                             
                         </li>
 
-                        <<!-- li class="dropdown submenu">
+                        <li class="dropdown submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ekonomi Kreatif</a>
                             <ul class="dropdown-menu other_dropdwn">
                                 <li><a href="<?php echo base_url().'produk' ?>">Daftar Anggota</a></li>
                             </ul>
-                        </li> -->
+                        </li>
                         <li class="dropdown submenu">
                             <a href="<?php echo base_url().'berita' ?>">Berita</a>
                         </li>

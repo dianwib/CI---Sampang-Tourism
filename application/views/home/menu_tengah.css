@@ -75,6 +75,34 @@
   margin: 0 auto;
 }
 
+
+.jenis-container {
+  display: inline-block;
+  width: 14%;
+  height: 14%;
+}
+
+.jenis {
+  display: block;
+  
+  padding: 5%;
+  margin: 1.4em;
+  padding-top: 10px;
+ background: rgb(236,169,43);
+background: linear-gradient(180deg, rgba(236,179,43,1) 23%, rgba(235,190,54,1) 56%, rgba(245,222,76,0.15) 97%);
+  border-radius: 15%;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+.page-wrap {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 .jenis-container {
   display: inline-block;
   width: 20%;
@@ -93,4 +121,5 @@ background: linear-gradient(180deg, rgba(236,179,43,1) 23%, rgba(235,190,54,1) 5
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
+}
 }

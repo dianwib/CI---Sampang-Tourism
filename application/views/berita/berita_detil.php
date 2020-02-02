@@ -104,6 +104,8 @@ Make sure you match the number of these 'circle' span elements to the number of 
 </div>
 
 </section> <!-- blog area -->
+   
+
     <section class="blog_all" style="background-color: #59c8ff;">
         <div class="container">
             <div class="row m0 blog_row">
@@ -165,6 +167,8 @@ Make sure you match the number of these 'circle' span elements to the number of 
                 <div class="col-md-6 footer_about">
                     <img src="<?php echo base_url().'images/logo.png'?>"?>
                      <p>Sampangtourism adalah website promosi pariwisata Kabupaten Sampang yang dikelola oleh Dinas Pemuda Olahraga Kebudayaan dan Pariwisata Kabupaten Sampang Madura.</p>
+<script type="text/javascript" src="https://www.stat-counter.org/count/46p8"></script><br>
+ <a href='https://www.counters-free.net/'>Counters-Free</a> <script type='text/javascript' src='https://whomania.com/ctr?id=07019445701cce6d12332b51c2a3dcf579f44de0'></script>
 
 
                 </div>

@@ -388,7 +388,9 @@ h1 {
                     <img src="<?php echo base_url().'images/logo.png'?>"?>
                      <p>Sampangtourism adalah website promosi pariwisata Kabupaten Sampang yang dikelola oleh Dinas Pemuda Olahraga Kebudayaan dan Pariwisata Kabupaten Sampang Madura.</p>
 
-
+<!-- Start of WebFreeCounter Code -->
+<a href="https://www.webfreecounter.com/" target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=grxqfcc&nd=6&style=71" border="0" alt="hit counter"></a>
+<!-- End of WebFreeCounter Code -->
                 </div>
                 <!-- <div class="col-md-3 col-sm-6 footer_about quick">
                     <h2>Fitur Lain</h2>

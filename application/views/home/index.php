@@ -68,7 +68,7 @@ margin-right:-4px;
   height: 100%;" src=<?php echo base_url().'images/destinasi.png'?>></a></div>
   </div>
   
-
+<br>
   <div class="jenis-container">
     <div class="jenis hover"><a href="#partners"><img style="
 
@@ -201,7 +201,7 @@ margin-right:-4px;
                 <h2 style="text-transform: capitalize;font-family: 'Lobster',cursive; font-size: 6vh; ">Berita Terbaru</h2>
              <!--    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
              --></div>
-            <div class="row latest_blog"> 
+            <div class="row latest_blog" style="margin-right: 0px;"> 
            <div class="container">
         <div class="row" style="text-align: center;">
             <div class="col-md-12 row-centered">
