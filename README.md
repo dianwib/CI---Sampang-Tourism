@@ -1,1 +1,1 @@
-SIP_BISMILLAH
+http://www.sampang-tourism.info/
